@@ -12,14 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 	
 	<header class="entry-header">
+		<div class="entry-meta">
+			<div class="plus-author"><img class="plus-author-photo" src="<?php plus_author_image(); ?>">
+			<div class="plus-author-name"><?php plus_author_name(); ?></div></div>
+
+		</div><!-- .entry-meta -->
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<div class="entry-meta">
-
-			<?php understrap_posted_on(); ?>
-
-		</div><!-- .entry-meta -->
+		
 
 	</header><!-- .entry-header -->
 

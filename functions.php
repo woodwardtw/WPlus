@@ -82,3 +82,12 @@ function comment_count($post_id){
 		return 'See all ' . $num . ' comments.';
 	}
 }
+
+function plus_author_image(){
+	$author_id = get_the_author_meta('ID');
+	echo get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
+}
+
+function plus_author_name(){
+	echo get_the_author_meta('display_name');
+}
