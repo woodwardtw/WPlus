@@ -23,9 +23,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 			<?php get_template_part( 'sidebar-templates/sidebar', 'left' ); ?>
 
-			<div
-				class="<?php if ( is_active_sidebar( 'left-sidebar' ) ) : ?>col-md-10<?php else : ?>col-md-12<?php endif; ?> content-area"
-				id="primary">
+			<div class="col-md-10 content-area" id="primary">
 
 				<main class="site-main" id="main" role="main">
 

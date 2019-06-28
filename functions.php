@@ -57,7 +57,8 @@ function the_front_posts(){
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
 			$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card">';
-			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">' . $name .'</div>';
+			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
+			$html .= '<div class="plus-author-name">' . $name .'</div></div>';
 			$html .= '<h2>' . get_the_title() . '</h2>';
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
 			$html .= '<div class="card-text">' . get_the_content() . '</div>';

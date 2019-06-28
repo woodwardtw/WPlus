@@ -35,6 +35,10 @@ h1, h2, h3 {
     text-overflow: ellipsis;
 }
 
+.navbar-light .navbar-brand, .navbar-light .navbar-brand a {
+	color: #676767;
+}
+
 .plus h2 {
 	color: rgba(0,0,0,0.87);
     font-size: 20px;
@@ -90,6 +94,11 @@ h1, h2, h3 {
 	margin-right: 10px;
 }
 
+.plus-author-name {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .plus-logged {
 	height: 24px;
 	width: 24px;
@@ -100,3 +109,24 @@ h1, h2, h3 {
 
 .plus-comment-box {
 }
+
+@media (min-width: 768px) {  
+  .card-columns {column-count: 2;}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+ .card-columns {column-count: 2;}
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+   .card-columns {column-count: 3;} 
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 2200px) {  
+   .card-columns {column-count: 4;} 
+}
+
+
