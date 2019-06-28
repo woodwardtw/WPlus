@@ -1,0 +1,75 @@
+// This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
+
+body {
+	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+	background-color: #f1f1f1;
+}
+
+.card {
+	border-radius: 0;
+	-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+    z-index: 1;
+    border: none;
+    padding-bottom: 20px;
+}
+
+.navbar {
+	color: #676767;
+	-webkit-box-shadow: 0 1px 8px rgba(0,0,0,.3);
+    box-shadow: 0 1px 8px rgba(0,0,0,.3);
+    background-color: #fff;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+h1, h2, h3 {
+	color: rgba(0,0,0,0.87);
+    font-size: 2em;
+    font-weight: 400;
+    margin: 16px;
+    line-height: 28px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.plus h2 {
+	color: rgba(0,0,0,0.87);
+    font-size: 20px;
+    font-weight: 300;
+    margin: 16px;
+    line-height: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    max-height: 56px;
+    margin-left: 0;
+    padding-left: 20px;
+}
+
+.card .card-text {
+	font-size: 14px;
+    line-height: 20px;
+    padding: 10px 20px;
+}
+
+.plus-author {
+	color: rgba(0,0,0,0.87);
+    font-size: 14px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    -webkit-box-flex: auto;
+    -webkit-flex: auto;
+    flex: auto;
+    padding: 20px 20px 10px 20px;
+}
+
+.plus-photo {
+	object-fit: cover;
+	width: 100%;
+}
