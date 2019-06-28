@@ -5,6 +5,17 @@ body {
 	background-color: #f1f1f1;
 }
 
+h1, h2, h3 {
+	color: rgba(0,0,0,0.87);
+    font-size: 2em;
+    font-weight: 400;
+    margin: 16px;
+    line-height: 28px;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
 .card {
 	border-radius: 0;
 	-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
@@ -24,16 +35,6 @@ body {
     text-overflow: ellipsis;
 }
 
-h1, h2, h3 {
-	color: rgba(0,0,0,0.87);
-    font-size: 2em;
-    font-weight: 400;
-    margin: 16px;
-    line-height: 28px;
-    margin-left: 0;
-    padding-left: 0;
-}
-
 .plus h2 {
 	color: rgba(0,0,0,0.87);
     font-size: 20px;
@@ -50,10 +51,18 @@ h1, h2, h3 {
     padding-left: 20px;
 }
 
+.plus h2:after {
+	content: '';
+	border-bottom: 1px solid #ebebeb;
+	width: 90%;
+    margin: 16px auto;
+    display: block;
+}
+
 .card .card-text {
 	font-size: 14px;
     line-height: 20px;
-    padding: 10px 20px;
+    padding: 10px 20px;    
 }
 
 .plus-author {
@@ -72,4 +81,22 @@ h1, h2, h3 {
 .plus-photo {
 	object-fit: cover;
 	width: 100%;
+}
+
+.plus-author-photo {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.plus-logged {
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	margin-right: 10px;
+	margin-left: 20px;
+}
+
+.plus-comment-box {
 }

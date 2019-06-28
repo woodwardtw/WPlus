@@ -51,11 +51,17 @@ function the_front_posts(){
 		while ( $plus_query->have_posts() ) {
 			$plus_query->the_post();
 			$post_id = get_the_id();
+			$name = get_the_author_meta('display_name');
+			$author_id = get_the_author_meta('ID');
+			$logged_in = get_current_user_id();
+			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
+			$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card">';
-			$html .= '<div class="plus-author">'. get_the_author_meta('display_name') .'</div>';
+			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">' . $name .'</div>';
 			$html .= '<h2>' . get_the_title() . '</h2>';
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
 			$html .= '<div class="card-text">' . get_the_content() . '</div>';
+			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div>';
 			$html .= '</div>';
 		}
 		echo $html;
