@@ -25,7 +25,10 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 	<div class="col-md-2 widget-area" id="left-sidebar" role="complementary">
 <?php endif; ?>
 <?php if ( !is_active_sidebar( 'left-sidebar' )) : ?>
-	<a href="">Home</a>
+	<ul id="plus-home-list">
+		<li id="home"><a href="<?php home_url(); ?>"><i class="fa fa-home"></i>Home</a></li>
+		<li id="profile"><a href="<?php  get_edit_user_link( $user_id ) ;?>"><i class="fa fa-user-circle"></i>Profile</a></li>
+	</ul>
 <?php endif; ?>
 <?php dynamic_sidebar( 'left-sidebar' ); ?>
 

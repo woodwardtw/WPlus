@@ -55,6 +55,36 @@ h1, h2, h3 {
     padding-left: 20px;
 }
 
+ul#plus-home-list{
+	list-style-type: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#plus-home-list li {
+	width: 80%;
+	padding: 5px 15px;
+	list-style-type: none;
+	display: block;
+}
+
+#plus-home-list li:hover {
+	background-color: #e7e7e7;
+}
+
+#plus-home-list li a {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+
+#plus-home-list i {
+	margin-right: 10px;
+	font-size: 1.4em;
+}
+
 .plus h2:after {
 	content: '';
 	border-bottom: 1px solid #ebebeb;
@@ -108,6 +138,34 @@ h1, h2, h3 {
 }
 
 .plus-comment-box {
+	font-size: .8em;
+	color: rgba(0,0,0,.6);
+}
+
+.comment-count {
+	padding-left: 20px;
+	font-size: .8em;
+	color: rgba(0,0,0,.6);
+	margin-bottom: 8px;
+}
+
+//single post 
+#single-wrapper .site-main {
+	max-width: 600px;
+	display: block;
+	margin: 0 auto;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+    z-index: 1;
+    border: none;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+#single-wrapper .entry-title {
+	padding-left: 20px;
+
 }
 
 @media (min-width: 768px) {  

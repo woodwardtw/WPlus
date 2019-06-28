@@ -62,7 +62,9 @@ function the_front_posts(){
 			$html .= '<h2>' . get_the_title() . '</h2>';
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
 			$html .= '<div class="card-text">' . get_the_content() . '</div>';
-			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div>';
+			$html .= '<div id="comment-post-' . $post_id . '">';
+			$html .= '<div class="comment-count">' . comment_count($post_id) . '</div>';
+			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div></div>';
 			$html .= '</div>';
 		}
 		echo $html;
@@ -74,19 +76,9 @@ function the_front_posts(){
 
 }
 
-// <div class="card" style="width: 18rem;">
-//   <img class="card-img-top" src="..." alt="Card image cap">
-//   <div class="card-body">
-//     <h5 class="card-title">Card title</h5>
-//     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-//   </div>
-//   <ul class="list-group list-group-flush">
-//     <li class="list-group-item">Cras justo odio</li>
-//     <li class="list-group-item">Dapibus ac facilisis in</li>
-//     <li class="list-group-item">Vestibulum at eros</li>
-//   </ul>
-//   <div class="card-body">
-//     <a href="#" class="card-link">Card link</a>
-//     <a href="#" class="card-link">Another link</a>
-//   </div>
-// </div>
+function comment_count($post_id){
+	$num = get_comments_number();
+	if ($num > 0){
+		return 'See all ' . $num . ' comments.';
+	}
+}
