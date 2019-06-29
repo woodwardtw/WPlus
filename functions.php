@@ -45,17 +45,18 @@ function the_front_posts(){
 
 	$plus_query = new WP_Query( $plus_args );
 	$html = '';
+	$logged_in = get_current_user_id();
+	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
 	// The Loop
 	if ( $plus_query->have_posts() ) {
 		echo '<div class="card-columns plus" id="gplus">';
+		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '"><div class="whats-new">What\'s new with you?</div></div></div>';
 		while ( $plus_query->have_posts() ) {
 			$plus_query->the_post();
 			$post_id = get_the_id();
-			$name = get_the_author_meta('display_name');
+			$name = get_the_author_meta('display_name');					
 			$author_id = get_the_author_meta('ID');
-			$logged_in = get_current_user_id();
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
-			$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card">';
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
 			$html .= '<div class="plus-author-name">' . $name .'</div></div>';
