@@ -160,6 +160,40 @@ ul#plus-home-list{
 	margin-bottom: 8px;
 }
 
+//modal editor
+.modal-content {
+	border-radius: 0;
+}
+
+#closer {
+	color: rgba(0,0,0,0.87);
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    position: absolute;
+    right: 140px;
+    bottom: 20px;
+    text-transform: uppercase;
+}
+
+#gform_submit_button_1 {
+	color: #fff;
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 14px;
+    cursor: pointer;
+	position: absolute;
+	right: 25px;
+	bottom: 13px;
+	background-color: #4285f4;	
+	border: none;
+	text-transform: uppercase;
+	padding: 7px 10px;
+	border-radius: 6px;
+}
+
+
 //single post 
 #single-wrapper .site-main {
 	max-width: 600px;

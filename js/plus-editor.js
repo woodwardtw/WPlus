@@ -10,7 +10,8 @@ jQuery(document).ready(function(){
     tinymce:      {
         toolbar1: 'bold,italic,bullist,numlist,link,alignleft,aligncenter,alignright,forecolor'
     },
-    quicktags:    true,}
+    quicktags:    true,
+	}
  );
 
 
