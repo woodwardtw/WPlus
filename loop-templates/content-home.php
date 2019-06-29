@@ -37,6 +37,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	</div><!-- .entry-content -->
 
+	<!--CONTACT Modal -->
+	<?php 
+		if (is_user_logged_in()){
+			wp_enqueue_editor();
+			wp_enqueue_media(); 
+		}
+		
+	?>
+		<div class="modal fade" id="plus-post" tabindex="-1" role="dialog" aria-labelledby="the-greeting" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">
+		          <span aria-hidden="true">Close <span class="close-x">X</span></span>
+		        </button>
+		      <div class="modal-header">
+		        <h2 class="modal-title" id="the-greeting">Hi</h2>       
+		      </div>
+		      <div class="modal-body">
+		        <div id="the-person"></div>
+		        <?php echo do_shortcode('[gravityform id="1" title="false" description="false"]');?>
+		      </div>
+		      <div class="modal-footer">        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+    <!-- END Modal -->
+
 	<footer class="entry-footer">
 
 		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
