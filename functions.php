@@ -50,7 +50,7 @@ function the_front_posts(){
 	// The Loop
 	if ( $plus_query->have_posts() ) {
 		echo '<div class="card-columns plus" id="gplus">';
-		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '"><div class="whats-new">What\'s new with you?</div></div></div>';
+		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '"><div class="whats-new"><button id="write">What\'s new with you?</button></div></div></div>';
 		while ( $plus_query->have_posts() ) {
 			$plus_query->the_post();
 			$post_id = get_the_id();
