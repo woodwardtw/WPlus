@@ -3,19 +3,20 @@ jQuery(document).ready(function(){
 	// tinymce.init({
  //    	selector: '#input_1_2'
  //  	});
- wp.editor.initialize( 'input_1_2', 
- 	{
-	 mediaButtons: true,
-	 plugins:    [ "anchor link" ],
-    tinymce:      {
-        toolbar1: 'bold,italic,bullist,numlist,link,alignleft,aligncenter,alignright,forecolor'
-    },
-    quicktags:    true,
-	}
- );
+//  wp.editor.initialize( 'input_1_2', 
+//  	{
+// 	 mediaButtons: true,
+// 	 plugins : "autolink, lists, spellchecker, style, layer, table, advhr, advimage, advlink, emotions, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, print, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, nonbreaking, xhtmlxtras, template",
+// 	 //plugins:    [ "anchor link oembed" ],
+//     tinymce:      {
+//         toolbar1: 'bold,italic,bullist,numlist,link,alignleft,aligncenter,alignright,forecolor'
+//     },
+//     quicktags:    true,
+// 	}
+//  );
 
 
-});
+ });
 
 
 //this deals with the modal tinymce issues
@@ -24,3 +25,4 @@ jQuery(document).on('focusin', function(e) {
         e.stopImmediatePropagation();
     }
 });
+

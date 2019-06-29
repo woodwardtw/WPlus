@@ -92,3 +92,23 @@ function plus_author_image(){
 function plus_author_name(){
 	echo get_the_author_meta('display_name');
 }
+
+//plus poster
+function plus_post(){
+	$content = 'Start typing to create.';
+        $editor_id = 'plus_post';
+        $settings =   array(
+            'wpautop' => true,
+            'media_buttons' => true,
+            'textarea_name' => $editor_id, 
+            'textarea_rows' =>get_option('default_post_edit_rows', 10), 
+            'tabindex' => '',
+            'editor_css' => '', 
+            'editor_class' => '',
+            'teeny' => true,
+            'dfw' => true,
+            'tinymce' => true,
+            'quicktags' => true 
+            );
+        wp_editor( $content, $editor_id, $settings); 
+}

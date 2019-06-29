@@ -67,17 +67,16 @@ h1, h2, h3 {
 
 ul#plus-home-list{
 	list-style-type: none;
-	width: 100%;
+	width: 200px;
 	margin: 0;
 	padding: 0;
 	position: fixed;
 }
 
 #plus-home-list li {
-	width: 80%;
-	padding: 5px 15px;
+	padding: 10px 15px;
 	list-style-type: none;
-	display: block;
+	display: block;	
 }
 
 #plus-home-list li:hover {
@@ -88,11 +87,13 @@ ul#plus-home-list{
 	display: block;
 	width: 100%;
 	height: auto;
+	vertical-align: middle;
+	line-height: 30px;
 }
 
 
 #plus-home-list i {
-	margin-right: 10px;
+	margin-right: 20px;
 	font-size: 1.4em;
 }
 

@@ -42,15 +42,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if (is_user_logged_in()){
 			wp_enqueue_editor();
 			wp_enqueue_media(); 
+			wp_enqueue_script( 'mce-view' );
+			wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php', array( 'jquery' ), false, true );
+
 		}
 		
 	?>
+	<?php if (is_user_logged_in()): ?>
+
 		<div class="modal fade" id="plus-post" tabindex="-1" role="dialog" aria-labelledby="the-greeting" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">		     		     
 		      <div class="modal-body">
 		        <div id="the-person"></div>
-		        <?php echo do_shortcode('[gravityform id="1" title="false" description="false"]');?>
+		        <?php //echo do_shortcode('[gravityform id="1" title="false" description="false"]');?>
+		        <div id="plus-post"></div>
+		         <?php echo plus_post(); ?> 
+
 		      </div>
 		        <button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">
 		          Cancel
@@ -58,6 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		    </div>
 		  </div>
 		</div>
+	<?php endif;?>
     <!-- END Modal -->
 
 	<footer class="entry-footer">
