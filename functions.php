@@ -118,3 +118,17 @@ function plus_post(){
             );
         wp_editor( $content, $editor_id, $settings); 
 }
+
+
+add_action( 'pre-html-upload-ui', '_force_html_uploader' );
+
+function _force_html_uploader( $flash ) {
+    remove_action('post-html-upload-ui', 'media_upload_html_bypass' );
+    return false;
+}
+
+add_action('media_upload_tabs', '_media_upload_auto_insert_js');
+
+function _media_upload_auto_insert_js(){
+    ?><script src="<?php bloginfo('stylesheet_directory'); ?>/js/upload.js"></script><?php
+}
