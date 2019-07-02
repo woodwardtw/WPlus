@@ -95,20 +95,21 @@ function plus_author_name(){
 
 //plus poster
 function plus_post(){
-	$content = 'Start typing to create.';
+	$content = '';
         $editor_id = 'plus_post';
         $settings =   array(
             'wpautop' => true,
             'media_buttons' => true,
             'textarea_name' => $editor_id, 
-            'textarea_rows' =>get_option('default_post_edit_rows', 10), 
-            'tabindex' => '',
+            'textarea_rows' =>get_option('default_post_edit_rows', 30), 
+            'tabindex' => '5',
             'editor_css' => '', 
             'editor_class' => '',
-            'teeny' => true,
-            'dfw' => true,
-            'tinymce' => true,
-            'quicktags' => true 
+            // 'teeny' => true,
+            // 'dfw' => true,
+            // 'tinymce' => true,
+            'quicktags' => true,
+            'drag_drop_upload' => true, 
             );
         wp_editor( $content, $editor_id, $settings); 
 }

@@ -38,16 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- .entry-content -->
 
 	<!--CONTACT Modal -->
-	<?php 
-		if (is_user_logged_in()){
-			wp_enqueue_editor();
-			wp_enqueue_media(); 
-			wp_enqueue_script( 'mce-view' );
-			wp_enqueue_script( 'tinymce_js', includes_url( 'js/tinymce/' ) . 'wp-tinymce.php', array( 'jquery' ), false, true );
 
-		}
-		
-	?>
 	<?php if (is_user_logged_in()): ?>
 
 		<div class="modal fade" id="plus-post" tabindex="-1" role="dialog" aria-labelledby="the-greeting" aria-hidden="true">
