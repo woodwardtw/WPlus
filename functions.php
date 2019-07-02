@@ -99,16 +99,21 @@ function plus_post(){
         $editor_id = 'plus_post';
         $settings =   array(
             'wpautop' => true,
+            'editor_height' => '400',
             'media_buttons' => true,
             'textarea_name' => $editor_id, 
-            'textarea_rows' =>get_option('default_post_edit_rows', 30), 
             'tabindex' => '5',
             'editor_css' => '', 
             'editor_class' => '',
             // 'teeny' => true,
-            // 'dfw' => true,
+             'dfw' => true,
             // 'tinymce' => true,
-            'quicktags' => true,
+            'quicktags' => false,
+            'tinymce' => array(
+		         'toolbar1'=> 'bold,italic,underline,link,unlink',
+		         'toolbar2' => '',
+		         'toolbar3' => ''
+		    ),
             'drag_drop_upload' => true, 
             );
         wp_editor( $content, $editor_id, $settings); 
