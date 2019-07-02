@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- .entry-content -->
 
 	<!--CONTACT Modal -->
-
+	<?php var_dump(wp_oembed_get( 'http://ogp.me/' ));?>
 	<?php if (is_user_logged_in()): ?>
 
 		<div class="modal fade" id="plus-post" tabindex="-1" role="dialog" aria-labelledby="the-greeting" aria-hidden="true">

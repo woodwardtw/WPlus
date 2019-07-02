@@ -60,9 +60,9 @@ function the_front_posts(){
 			$html .= '<div class="card">';
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
 			$html .= '<div class="plus-author-name">' . $name .'</div></div>';
-			$html .= '<h2>' . get_the_title() . '</h2>';
+			$html .= '<a href="' . get_post_permalink() . '"><h2>' . ensure_post_title() . '</h2></a>';
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
-			$html .= '<div class="card-text">' . get_the_content() . '</div>';
+			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
 			$html .= '<div class="comment-count">' . comment_count($post_id) . '</div>';
 			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div></div>';
@@ -75,6 +75,16 @@ function the_front_posts(){
 		// no posts found
 	}
 
+}
+
+function ensure_post_title(){
+	global $post;
+	$title = get_the_title();
+	if($title){
+		return $title;
+	} else {
+		return 'Read more . . . ';
+	}
 }
 
 function comment_count($post_id){
