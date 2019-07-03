@@ -106,15 +106,14 @@ function plus_author_name(){
 //plus poster
 function plus_post(){
 	$content = '';
-        $editor_id = 'plus_post';
-        $settings =   array(
+    $settings =   array(
             'wpautop' => true,
             'editor_height' => '400',
             'media_buttons' => true,
-            'textarea_name' => $editor_id, 
             'tabindex' => '5',
             'editor_css' => '', 
             'editor_class' => '',
+            'textarea_name' => 'pluscontent',
             // 'teeny' => true,
              'dfw' => true,
             // 'tinymce' => true,
@@ -126,8 +125,7 @@ function plus_post(){
 		    ),
             'drag_drop_upload' => true, 
             );
-       $editor = wp_editor( $content, $editor_id, $settings); 
-       return $editor;
+    return wp_editor( $content, 'mypluspost', $settings); 
 }
 
 
@@ -150,8 +148,8 @@ function _media_upload_auto_insert_js(){
 function plus_post_creation($title, $body) {
     // do something
     $my_post = array(
-	  'post_title'    => wp_strip_all_tags( $title ), //$_POST['post_title']
-	  'post_content'  => $body, //$_POST['post_content']
+	  'post_title'    => wp_strip_all_tags( $title, true ), 
+	  'post_content'  => $body, 
 	  'post_status'   => 'publish',
 	  'post_author'   => get_current_user_id(),
 	);
@@ -163,16 +161,7 @@ function plus_post_creation($title, $body) {
 
 
 function form_builder(){
-	//$editor = plus_post();
-	return '
-	<form method="post" action="' . admin_url( 'admin-post.php' ) .'">
-	  <input type="hidden" name="action" value="process_form">
-	  <label for="name">Title:</label>
-	  <input type="text" name="title" id="plus-title">
-	  <label for="post">Post</label>
-	  <input type="text" name="post" id="plus-post">
-	  <input type="submit" name="submit" value="Submit">
-	</form>';
+	echo '<form method="post" action="' . admin_url( 'admin-post.php' ) .'">';
 }
 
 //add_shortcode( 'the-form', 'form_builder' );
@@ -187,12 +176,13 @@ function process_form_data() {
 	} else {
 		$title = 'Read more . . . ';
 	}
-	if(isset($_POST['post'])){
-		$body = $_POST['post'];
+	if(isset($_POST['pluscontent'])){
+		$body = $_POST['pluscontent'];
 	} else {
 		$body = ' ';
 	}
 
 	plus_post_creation($title, $body);
+	//var_dump($_POST);
 	header('Location: ' . get_home_url());
 }

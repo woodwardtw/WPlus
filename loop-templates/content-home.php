@@ -45,24 +45,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		    <div class="modal-content">		     		     
 		      <div class="modal-body">
 		        <div id="the-person"></div>
-		        <?php echo form_builder();?>		       
-					<!-- <form action="<?php //admin_url( 'admin-post.php' ) ?>" method="post" >
-			        	<p><label for="title">Title</label><br />		        		
-	        			<input type="text" id="title" value="" tabindex="1" size="20" name="title" />
-	    				</p>
-	    				<div id="plus-post"></div>
-				         <?php //echo plus_post(); ?> 
-				         <?php //wp_nonce_field( 'wps-frontend-post' ); ?>
-				          <button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">
-			          Cancel
-			        </button>  
-	  		        	<input type="hidden" name="action" value="add_foobar">
-					  	<input type="hidden" name="data" value="foobarid">
-					  	<input type="submit" value="Submit">
-			    </form> -->
-		      </div>
-		       
-   
+		        <?php echo form_builder();?>
+		        <input type="hidden" name="action" value="process_form">
+				  <label for="name">Title:</label>
+				  <input type="text" name="title" id="plus-title">
+				  <label for="post">Post</label>
+				  <?php plus_post() ;?>
+				  <input type="submit" name="submit" value="Submit">
+				</form>		       					
+		      </div>		       
 		    </div>
 		  </div>
 		</div>
