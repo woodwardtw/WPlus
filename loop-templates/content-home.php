@@ -47,9 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		        <div id="the-person"></div>
 		        <?php echo form_builder();?>
 		        <input type="hidden" name="action" value="process_form">
-				  <label for="name">Title:</label>
-				  <input type="text" name="title" id="plus-title">
-				  <label for="post">Post</label>
+				  <input type="text" name="plus_title" id="plus_title" aria-label="Title" placeholder="Your title goes here.">
 				  <?php plus_post() ;?>
 				  <input type="submit" name="submit" value="Post" id="post-plus-button">				  
 				</form>

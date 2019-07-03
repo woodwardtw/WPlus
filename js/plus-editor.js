@@ -1,24 +1,13 @@
-jQuery(document).ready(function(){
+//select title on launch of modal
+jQuery('#plus-post').on('shown.bs.modal', function () {
+    jQuery('#plus-title').focus();
+})  
 
-	// tinymce.init({
- //    	selector: '#input_1_2'
- //  	});
-//  wp.editor.initialize( 'input_1_2', 
-//  	{
-// 	 mediaButtons: true,
-// 	 plugins : "autolink, lists, spellchecker, style, layer, table, advhr, advimage, advlink, emotions, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, print, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, nonbreaking, xhtmlxtras, template",
-// 	 //plugins:    [ "anchor link oembed" ],
-//     tinymce:      {
-//         toolbar1: 'bold,italic,bullist,numlist,link,alignleft,aligncenter,alignright,forecolor'
-//     },
-//     quicktags:    true,
-// 	}
-//  );
-
-
- });
-
-
+/*
+**
+MODAL LAND
+**
+*/
 //this deals with the modal tinymce issues
 jQuery(document).on('focusin', function(e) {
     if (jQuery(e.target).closest(".wp-link-input").length || jQuery(e.target).closest("#link-selector").length) {
@@ -46,3 +35,4 @@ videos.forEach(function(video) {
       video.parentNode.insertBefore(wrapper, video); //insert wrapper      
       wrapper.appendChild(video); // move video into wrapper
 });
+

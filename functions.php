@@ -121,7 +121,8 @@ function plus_post(){
             'tinymce' => array(
 		         'toolbar1'=> 'bold,italic,underline,link,unlink',
 		         'toolbar2' => '',
-		         'toolbar3' => ''
+		         'toolbar3' => '',
+		         'content_css' => get_stylesheet_directory_uri() . '/css/font-editor-styles.css'
 		    ),
             'drag_drop_upload' => true, 
             );
@@ -171,8 +172,8 @@ add_action( 'admin_post_nopriv_process_form', 'process_form_data' );
 add_action( 'admin_post_process_form', 'process_form_data' );
 function process_form_data() {
   // form processing code here
-	if(isset($_POST['title'])){
-		$title = $_POST['title'];
+	if(isset($_POST['plus_title'])){
+		$title = $_POST['plus_title'];
 	} else {
 		$title = 'Read more . . . ';
 	}
