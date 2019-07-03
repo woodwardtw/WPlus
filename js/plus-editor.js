@@ -1,6 +1,6 @@
 //select title on launch of modal
 jQuery('#plus-post').on('shown.bs.modal', function () {
-    jQuery('#plus-title').focus();
+    jQuery('#plus_title').focus();
 })  
 
 /*
@@ -35,4 +35,3 @@ videos.forEach(function(video) {
       video.parentNode.insertBefore(wrapper, video); //insert wrapper      
       wrapper.appendChild(video); // move video into wrapper
 });
-
