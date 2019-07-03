@@ -60,7 +60,7 @@ function the_front_posts(){
 			$html .= '<div class="card">';
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
 			$html .= '<div class="plus-author-name">' . $name .'</div></div>';
-			$html .= '<a href="' . get_post_permalink() . '"><h2>' . ensure_post_title() . '</h2></a>';
+			$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
@@ -77,15 +77,15 @@ function the_front_posts(){
 
 }
 
-function ensure_post_title(){
-	global $post;
-	$title = get_the_title();
-	if($title){
-		return $title;
-	} else {
-		return 'Read more . . . ';
-	}
-}
+// function ensure_post_title(){
+// 	global $post;
+// 	$title = get_the_title($post->ID);
+// 	if($title){
+// 		return $title;
+// 	} else {
+// 		return 'Read more . . . ';
+// 	}
+// }
 
 function comment_count($post_id){
 	$num = get_comments_number();
@@ -126,7 +126,8 @@ function plus_post(){
 		    ),
             'drag_drop_upload' => true, 
             );
-        wp_editor( $content, $editor_id, $settings); 
+       $editor = wp_editor( $content, $editor_id, $settings); 
+       return $editor;
 }
 
 
@@ -141,4 +142,57 @@ add_action('media_upload_tabs', '_media_upload_auto_insert_js');
 
 function _media_upload_auto_insert_js(){
     ?><script src="<?php bloginfo('stylesheet_directory'); ?>/js/upload.js"></script><?php
+}
+
+//FORM SUBMISSION
+
+
+function plus_post_creation($title, $body) {
+    // do something
+    $my_post = array(
+	  'post_title'    => wp_strip_all_tags( $title ), //$_POST['post_title']
+	  'post_content'  => $body, //$_POST['post_content']
+	  'post_status'   => 'publish',
+	  'post_author'   => get_current_user_id(),
+	);
+	 
+	// Insert the post into the database
+	wp_insert_post( $my_post );
+}
+
+
+
+function form_builder(){
+	//$editor = plus_post();
+	return '
+	<form method="post" action="' . admin_url( 'admin-post.php' ) .'">
+	  <input type="hidden" name="action" value="process_form">
+	  <label for="name">Title:</label>
+	  <input type="text" name="title" id="plus-title">
+	  <label for="post">Post</label>
+	  <input type="text" name="post" id="plus-post">
+	  <input type="submit" name="submit" value="Submit">
+	</form>';
+}
+
+//add_shortcode( 'the-form', 'form_builder' );
+
+
+add_action( 'admin_post_nopriv_process_form', 'process_form_data' );
+add_action( 'admin_post_process_form', 'process_form_data' );
+function process_form_data() {
+  // form processing code here
+	if(isset($_POST['title'])){
+		$title = $_POST['title'];
+	} else {
+		$title = 'Read more . . . ';
+	}
+	if(isset($_POST['post'])){
+		$body = $_POST['post'];
+	} else {
+		$body = ' ';
+	}
+
+	plus_post_creation($title, $body);
+	header('Location: ' . get_home_url());
 }
