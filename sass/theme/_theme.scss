@@ -166,16 +166,29 @@ ul#plus-home-list{
 	border-radius: 0;
 }
 
-#closer {
+#closer, #post-plus-button {
 	color: rgba(0,0,0,0.87);
     font-weight: 500;
     line-height: 20px;
     font-size: 14px;
     cursor: pointer;
-    position: absolute;
+    position: absolute;    
+    text-transform: uppercase;
+    border: none;    
+}
+
+#closer {	
     right: 140px;
     bottom: 20px;
-    text-transform: uppercase;
+}
+
+#post-plus-button {
+	right: 30px;
+    bottom: 10px;
+    padding: 10px 20px;
+    background-color: #efefef;
+    border-radius: 8px;
+    display: block;
 }
 
 #gform_submit_button_1 {
@@ -225,6 +238,7 @@ ul#plus-home-list{
 #plus-post .modal-body {
 	padding-bottom: 40px;
 }
+
 
 /*Youtube video resizer*/
 

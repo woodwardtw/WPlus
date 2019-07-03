@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	</div><!-- .entry-content -->
 
-	<!--CONTACT Modal -->
+	<!-- Modal -->
 	<?php if (is_user_logged_in()): ?>
 
 		<div class="modal fade" id="plus-post" tabindex="-1" role="dialog" aria-labelledby="the-greeting" aria-hidden="true">
@@ -51,8 +51,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				  <input type="text" name="title" id="plus-title">
 				  <label for="post">Post</label>
 				  <?php plus_post() ;?>
-				  <input type="submit" name="submit" value="Submit">
-				</form>		       					
+				  <input type="submit" name="submit" value="Post" id="post-plus-button">				  
+				</form>
+				<button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">Cancel</button>		       					
 		      </div>		       
 		    </div>
 		  </div>
