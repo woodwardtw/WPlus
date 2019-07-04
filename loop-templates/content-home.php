@@ -56,9 +56,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		    </div>
 		  </div>
 		</div>
-	<?php endif;?>
     <!-- END Modal -->
+
     <button class="writing-circle" data-toggle="modal" data-target="#plus-post" aria-label="write post"><i class="fa fa-pencil"></i></button>
+    <?php endif;?>
 
 	<footer class="entry-footer">
 

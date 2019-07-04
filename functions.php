@@ -40,7 +40,7 @@ function the_front_posts(){
 		'post_type' => 'post',
 		'post_status' => 'publish',
 		'orderby' => 'date',
-		'posts_per_page' => 10,
+		'posts_per_page' => 30,
 	);
 
 	$plus_query = new WP_Query( $plus_args );
@@ -50,7 +50,9 @@ function the_front_posts(){
 	// The Loop
 	if ( $plus_query->have_posts() ) {
 		echo '<div class="card-columns plus" id="gplus">';
+		if(is_user_logged_in()){
 		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '"><div class="whats-new"><button id="write"  data-toggle="modal" data-target="#plus-post">What\'s new with you?</button></div></div></div>';
+		}
 		while ( $plus_query->have_posts() ) {
 			$plus_query->the_post();
 			$post_id = get_the_id();
@@ -168,7 +170,6 @@ function form_builder(){
 //add_shortcode( 'the-form', 'form_builder' );
 
 
-add_action( 'admin_post_nopriv_process_form', 'process_form_data' );
 add_action( 'admin_post_process_form', 'process_form_data' );
 function process_form_data() {
   // form processing code here
@@ -181,6 +182,12 @@ function process_form_data() {
 		$body = $_POST['pluscontent'];
 	} else {
 		$body = ' ';
+	}
+
+	if(isset($_SESSION['message']))
+	{
+	    echo $_SESSION['message'];
+	    unset($_SESSION['message']);
 	}
 
 	plus_post_creation($title, $body);
