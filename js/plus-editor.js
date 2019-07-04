@@ -35,3 +35,12 @@ videos.forEach(function(video) {
       video.parentNode.insertBefore(wrapper, video); //insert wrapper      
       wrapper.appendChild(video); // move video into wrapper
 });
+
+
+//PREVENTS RAPID SUBMIT OF FORM ON THE FRONT END
+jQuery( "#plus-form" ).submit(function( event ) {
+   jQuery(this).submit(function() {
+        return false;
+    });
+    return true;
+});

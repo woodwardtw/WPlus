@@ -164,7 +164,7 @@ function plus_post_creation($title, $body) {
 
 
 function form_builder(){
-	echo '<form method="post" action="' . admin_url( 'admin-post.php' ) .'">';
+	echo '<form id="plus-form" method="post" action="' . admin_url( 'admin-post.php' ) .'">';
 }
 
 //add_shortcode( 'the-form', 'form_builder' );
