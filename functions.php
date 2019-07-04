@@ -195,3 +195,25 @@ function process_form_data() {
 	header('Location: ' . get_home_url());
 }
 
+
+
+function akv3_editor_char_count() {
+?>
+<script type="text/javascript">
+(function($) {
+	wpCharCount = function(txt) {
+		$('.char-count').html("" + txt.length);
+	};
+	$(document).ready(function() {
+		$('#wp-word-count').append('<br />Char count: <span class="char-count">0</span>');
+	}).bind( 'wpcountwords', function(e, txt) {
+		wpCharCount(txt);
+	});
+	$('#content').bind('keyup', function() {
+		wpCharCount($('#content').val());
+	});
+}(jQuery));
+</script>
+<?php
+}
+add_action('dbx_post_sidebar', 'akv3_editor_char_count');
