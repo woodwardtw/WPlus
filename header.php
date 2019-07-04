@@ -57,7 +57,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 					<form action="<?php echo home_url( '/' ); ?>" method="get" class="col-md-6 align-self-center">
 					    <input placeholder="Search" aria-label="search" type="text" name="s" id="search" value="<?php the_search_query(); ?>" />
 					</form>
-
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -78,7 +77,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 			<?php if ( 'container' == $container ) : ?>
 			</div><!-- .container -->
 			<?php endif; ?>
-
+				<div class="profile-img"><?php echo menubar_user_icon();?></div>
 		</nav><!-- .site-navigation -->
 
 	</div><!-- #wrapper-navbar end -->

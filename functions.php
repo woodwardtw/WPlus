@@ -192,11 +192,19 @@ function process_form_data() {
 
 	plus_post_creation($title, $body);
 	//var_dump($_POST);
-	header('Location: ' . get_home_url());
+	header('Location: ' . get_home_url()); //redirect to page to reload
+}
+
+
+function menubar_user_icon(){
+	$logged_in = get_current_user_id();
+	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
+	return '<a href="'.get_edit_user_link($logged_in).'"><img class="plus-logged-menu" src="' . $current_img . '"></a>';
 }
 
 
 
+//SORT OF WORKS FOR WORD COUNT IN INTERNAL . . . 
 function akv3_editor_char_count() {
 ?>
 <script type="text/javascript">
