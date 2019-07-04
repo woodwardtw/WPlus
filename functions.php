@@ -105,24 +105,47 @@ function plus_author_name(){
 	echo get_the_author_meta('display_name');
 }
 
-//plus poster
+//External wp_editor 
+
+
+// add new buttons
+//FAILURE TO ADD EMOTICONS PLUGIN
+add_filter( 'mce_buttons', 'myplugin_register_buttons' );
+
+function myplugin_register_buttons( $buttons ) {
+   array_push( $buttons, 'separator', 'tinymceEmoji' );
+   return $buttons;
+}
+ 
+// Load the TinyMCE plugin : editor_plugin.js (wp2.5)
+add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
+
+function myplugin_register_tinymce_javascript( $plugin_array ) {
+   $plugin_array['emoticons'] = get_template_directory_uri().'/js/tinymce/emoticons/plugin.min.js';
+   return $plugin_array;
+}
+
+
+
 function plus_post(){
 	$content = '';
     $settings =   array(
             'wpautop' => true,
             'editor_height' => '400',
             'media_buttons' => true,
+            'selector' => 'textarea',
             'tabindex' => '5',
             'editor_css' => '', 
             'editor_class' => '',
             'textarea_name' => 'pluscontent',
             'paste_remove_spans' => true,
-            // 'teeny' => true,
+            'teeny' => false,
              'dfw' => true,
-            // 'tinymce' => true,
+            'tinymce' => true,
             'quicktags' => false,
+            'plugins' => 'emoticons',//doesn't work yet
             'tinymce' => array(
-		         'toolbar1'=> 'bold,italic,underline,link,unlink',
+		         'toolbar1'=> 'bold,italic,underline,link,emoticons',//unlink 
 		         'toolbar2' => '',
 		         'toolbar3' => '',
 		         'content_css' => get_stylesheet_directory_uri() . '/css/front-editor-styles.css',
@@ -132,7 +155,11 @@ function plus_post(){
     return wp_editor( $content, 'mypluspost', $settings); 
 }
 
-//Failed to load plugin: wordcount from url http://192.168.33.10/wordpress/plus/wp-includes/js/tinymce/plugins/wordcount/plugin.min.js
+
+
+
+//Failed to load plugin: 
+// http://192.168.33.10/wordpress/plus/wp-content/themes/WPlus/js/emoticons/plugin.min.js from url plugins/http://192.168.33.10/wordpress/plus/wp-content/themes/WPlus/js/emoticons/plugin.min.js/plugin.min.js
 
 add_action( 'pre-html-upload-ui', '_force_html_uploader' );
 

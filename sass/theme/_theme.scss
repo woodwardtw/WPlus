@@ -317,6 +317,9 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 	margin-right: 10px;
 }
 
+.mce-toolbar .mce-btn-group .mce-btn.mce-active, .mce-toolbar .mce-btn-group .mce-btn:active, .qt-dfw.active {
+	background-color: #fff!important;
+}
 
 .mce-btn.mce-active button, .mce-btn.mce-active:hover button, .mce-btn.mce-active i, .mce-btn.mce-active:hover i {
 	background-color: #db4437!important;

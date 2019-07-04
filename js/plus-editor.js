@@ -44,3 +44,18 @@ jQuery( "#plus-form" ).submit(function( event ) {
     });
     return true;
 });
+
+
+
+//from https://gist.github.com/RadGH/523bed274f307830752c
+
+function tmce_getContent(editor_id, textarea_id) {
+  if ( typeof editor_id == 'undefined' ) editor_id = wpActiveEditor;
+  if ( typeof textarea_id == 'undefined' ) textarea_id = editor_id;
+  
+  if ( jQuery('#wp-'+editor_id+'-wrap').hasClass('tmce-active') && tinyMCE.get(editor_id) ) {
+    return tinyMCE.get(editor_id).getContent();
+  }else{
+    return jQuery('#'+textarea_id).val();
+  }
+}
