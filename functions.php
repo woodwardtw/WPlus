@@ -116,6 +116,7 @@ function plus_post(){
             'editor_css' => '', 
             'editor_class' => '',
             'textarea_name' => 'pluscontent',
+            'paste_remove_spans' => true,
             // 'teeny' => true,
              'dfw' => true,
             // 'tinymce' => true,
@@ -124,13 +125,14 @@ function plus_post(){
 		         'toolbar1'=> 'bold,italic,underline,link,unlink',
 		         'toolbar2' => '',
 		         'toolbar3' => '',
-		         'content_css' => get_stylesheet_directory_uri() . '/css/font-editor-styles.css'
+		         'content_css' => get_stylesheet_directory_uri() . '/css/front-editor-styles.css',
 		    ),
             'drag_drop_upload' => true, 
             );
     return wp_editor( $content, 'mypluspost', $settings); 
 }
 
+//Failed to load plugin: wordcount from url http://192.168.33.10/wordpress/plus/wp-includes/js/tinymce/plugins/wordcount/plugin.min.js
 
 add_action( 'pre-html-upload-ui', '_force_html_uploader' );
 
@@ -146,7 +148,6 @@ function _media_upload_auto_insert_js(){
 }
 
 //FORM SUBMISSION
-
 
 function plus_post_creation($title, $body) {
     // do something
@@ -224,4 +225,4 @@ function akv3_editor_char_count() {
 </script>
 <?php
 }
-add_action('dbx_post_sidebar', 'akv3_editor_char_count');
+//add_action('dbx_post_sidebar', 'akv3_editor_char_count');
