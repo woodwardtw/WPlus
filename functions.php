@@ -67,7 +67,7 @@ function the_front_posts(){
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
 			$html .= '<div class="comment-count">' . comment_count($post_id) . '</div>';
-			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div></div>';
+			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div>'. do_shortcode("[display_comments]") .'</div>';
 			$html .= '</div>';
 		}
 		echo $html;
@@ -78,6 +78,38 @@ function the_front_posts(){
 	}
 
 }
+
+
+/*
+COMMENTS
+*/
+
+//from https://toolset.com/forums/topic/display-comments-at-the-middle-of-a-content-template/
+add_shortcode( 'display_comments', 'display_comments_shortcode' );
+function display_comments_shortcode() {
+ global $post;
+ ob_start();
+ comment_form(
+ 	array(
+		'label_submit' => __( 'Post' ),
+		'title_reply' => '',
+		'id_form' => 'commentform-'. $post->ID,
+		'logged_in_as' => '<p>a person</p>',
+		'title_comment' => '',
+
+	)
+ );
+ $res = ob_get_contents();
+ ob_end_clean();
+ return $res;
+}
+
+function wpsites_modify_comment_form_text_area($arg) {
+    $arg['comment_field'] = '<p class="comment-form-comment"><label for="comment">' . _x( '', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="1" aria-required="true"></textarea></p>';
+    return $arg;
+}
+
+add_filter('comment_form_defaults', 'wpsites_modify_comment_form_text_area');
 
 // function ensure_post_title(){
 // 	global $post;
@@ -155,11 +187,6 @@ function plus_post(){
     return wp_editor( $content, 'mypluspost', $settings); 
 }
 
-
-
-
-//Failed to load plugin: 
-// http://192.168.33.10/wordpress/plus/wp-content/themes/WPlus/js/emoticons/plugin.min.js from url plugins/http://192.168.33.10/wordpress/plus/wp-content/themes/WPlus/js/emoticons/plugin.min.js/plugin.min.js
 
 add_action( 'pre-html-upload-ui', '_force_html_uploader' );
 
