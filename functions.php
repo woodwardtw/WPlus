@@ -67,8 +67,8 @@ function the_front_posts(){
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
 			$html .= '<div class="comment-count">' . comment_count($post_id) . '</div>';
-			$html .= '<div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '">Add a comment . . . </div>'. do_shortcode("[display_comments]") .'</div>';
-			$html .= '</div>';
+			$html .= do_shortcode("[display_comments]");
+			$html .= '</div></div></div>';
 		}
 		echo $html;
 		echo '</div>';
@@ -105,7 +105,10 @@ function display_comments_shortcode() {
 }
 
 function wpsites_modify_comment_form_text_area($arg) {
-    $arg['comment_field'] = '<p class="comment-form-comment"><label for="comment">' . _x( '', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="1" aria-required="true"></textarea></p>';
+	global $post;
+	$logged_in = get_current_user_id();
+	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
+    $arg['comment_field'] = '<div class="comment-form-comment"><div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '"><textarea id="comment-'. $post->ID .'" name="comment" cols="45" rows="1" aria-required="true" aria-label="Comment" placeholder="Add a comment..."></textarea></div>';
     return $arg;
 }
 
@@ -138,10 +141,7 @@ function plus_author_name(){
 }
 
 //External wp_editor 
-
-
 // add new buttons
-//FAILURE TO ADD EMOTICONS PLUGIN
 add_filter( 'mce_buttons', 'myplugin_register_buttons' );
 
 function myplugin_register_buttons( $buttons ) {

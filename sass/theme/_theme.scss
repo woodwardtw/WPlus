@@ -292,6 +292,13 @@ comments
 	padding: 20px;
 }
 
+.comment-form-comment textarea {
+	width: 80%;
+	border: none;
+	display: inline-block;
+	position: absolute;
+}
+
 /*FRONT END TINYMCE TOOLBAR*/
 .mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset, .wp-editor-container {
 	border: 0 !important;
