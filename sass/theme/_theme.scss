@@ -299,6 +299,14 @@ comments
 	position: absolute;
 }
 
+.plus-comment-submit {
+	border: none;
+	float: right;
+	margin-top: 15px;
+	text-transform: uppercase;
+	color:#4285f4;
+}
+
 /*FRONT END TINYMCE TOOLBAR*/
 .mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset, .wp-editor-container {
 	border: 0 !important;

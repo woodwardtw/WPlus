@@ -94,9 +94,10 @@ function display_comments_shortcode() {
 		'label_submit' => __( 'Post' ),
 		'title_reply' => '',
 		'id_form' => 'commentform-'. $post->ID,
-		'logged_in_as' => '<p>a person</p>',
+		'logged_in_as' => '',
 		'title_comment' => '',
-
+		'id_submit' => 'submit-' . $post->ID,
+		'class_submit' => 'plus-comment-submit',
 	)
  );
  $res = ob_get_contents();
@@ -113,6 +114,15 @@ function wpsites_modify_comment_form_text_area($arg) {
 }
 
 add_filter('comment_form_defaults', 'wpsites_modify_comment_form_text_area');
+
+add_filter( 'comment_form_respond', 'my_comment_form_field_author' );
+
+function my_comment_form_field_author( $field ) {
+
+	$field = str_replace( 'id="respond"', 'id="respond-123"', $field );
+
+	return $field;
+}
 
 // function ensure_post_title(){
 // 	global $post;
