@@ -22,7 +22,7 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div class="comments-area" id="comments">
+<div class="comments-area" id="comments-<?php echo $post->ID ;?>">
 
 	<?php // You can start editing here -- including this comment! ?>
 
@@ -58,7 +58,7 @@ if ( post_password_required() ) {
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through. ?>
 
-			<nav class="comment-navigation" id="comment-nav-above">
+			<nav class="comment-navigation" id="comment-nav-above-<?php echo $post->ID ;?>">
 
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'understrap' ); ?></h1>
 
@@ -93,7 +93,7 @@ if ( post_password_required() ) {
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through. ?>
 
-			<nav class="comment-navigation" id="comment-nav-below">
+			<nav class="comment-navigation" id="comment-nav-below-<?php echo $post->ID ;?>">
 
 				<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'understrap' ); ?></h1>
 

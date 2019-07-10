@@ -67,8 +67,8 @@ function the_front_posts(){
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
 			$html .= '<div class="comment-count">' . comment_count($post_id) . '</div>';
-			$html .= do_shortcode("[display_comments]");
-			$html .= '</div></div></div>';
+			$html .= display_comments_shortcode();//do_shortcode("[display_comments]");
+			$html .= '</div></div>';
 		}
 		echo $html;
 		echo '</div>';
@@ -109,20 +109,14 @@ function wpsites_modify_comment_form_text_area($arg) {
 	global $post;
 	$logged_in = get_current_user_id();
 	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
-    $arg['comment_field'] = '<div class="comment-form-comment"><div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '"><textarea id="comment-'. $post->ID .'" name="comment" cols="45" rows="1" aria-required="true" aria-label="Comment" placeholder="Add a comment..."></textarea></div>';
+    $arg['comment_field'] = '<div class="comment-form-comment"><div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '"><textarea id="comment-'. $post->ID .'" name="comment" cols="45" rows="1" aria-required="true" aria-label="Comment" placeholder="Add a comment..."></textarea></div></div>';
+     $defaults['title_reply_before'] = '<span id="reply-title-'.$post->ID.'" class="comment-reply-title">';
     return $arg;
 }
 
 add_filter('comment_form_defaults', 'wpsites_modify_comment_form_text_area');
 
-add_filter( 'comment_form_respond', 'my_comment_form_field_author' );
 
-function my_comment_form_field_author( $field ) {
-
-	$field = str_replace( 'id="respond"', 'id="respond-123"', $field );
-
-	return $field;
-}
 
 // function ensure_post_title(){
 // 	global $post;
@@ -152,7 +146,7 @@ function plus_author_name(){
 
 //External wp_editor 
 // add new buttons
-add_filter( 'mce_buttons', 'myplugin_register_buttons' );
+//add_filter( 'mce_buttons', 'myplugin_register_buttons' );
 
 function myplugin_register_buttons( $buttons ) {
    array_push( $buttons, 'separator', 'tinymceEmoji' );
@@ -160,10 +154,11 @@ function myplugin_register_buttons( $buttons ) {
 }
  
 // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
-add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
+//emoji sort of works from https://www.npmjs.com/package/tinymce-emoji
+//add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
 
 function myplugin_register_tinymce_javascript( $plugin_array ) {
-   $plugin_array['emoticons'] = get_template_directory_uri().'/js/tinymce/emoticons/plugin.min.js';
+   $plugin_array['tinymceEmoji'] = get_template_directory_uri().'/js/tinymce/tinymce-emoji/plugin.min.js';
    return $plugin_array;
 }
 
@@ -185,9 +180,9 @@ function plus_post(){
              'dfw' => true,
             'tinymce' => true,
             'quicktags' => false,
-            'plugins' => 'emoticons',//doesn't work yet
+            //'plugins' => 'tinymceEmoji',
             'tinymce' => array(
-		         'toolbar1'=> 'bold,italic,underline,link,emoticons',//unlink 
+		         'toolbar1'=> 'bold,italic,underline,link',//unlink and tinymceEmoji removed 
 		         'toolbar2' => '',
 		         'toolbar3' => '',
 		         'content_css' => get_stylesheet_directory_uri() . '/css/front-editor-styles.css',
@@ -290,3 +285,16 @@ function akv3_editor_char_count() {
 <?php
 }
 //add_action('dbx_post_sidebar', 'akv3_editor_char_count');
+
+
+
+//from https://code.tutsplus.com/articles/quick-tip-automatically-link-twitter-handles-with-a-content-filter--wp-26134
+function wptuts_twitter_handles($content) {
+    $pattern = '/(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9_]+)/i';
+    $replace = '<a href="http://www.twitter.com/$1">@$1</a>';
+    $content = preg_replace($pattern, $replace, $content);
+    $content = t_co_link_maker($content);
+    return $content;
+}
+ 
+//add_filter( "the_content", "wptuts_twitter_handles" );
