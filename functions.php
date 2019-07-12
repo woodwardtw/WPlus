@@ -148,20 +148,33 @@ function plus_author_name(){
 // add new buttons
 //add_filter( 'mce_buttons', 'myplugin_register_buttons' );
 
-function myplugin_register_buttons( $buttons ) {
-   array_push( $buttons, 'separator', 'tinymceEmoji' );
-   return $buttons;
-}
+// function myplugin_register_buttons( $buttons ) {
+//    array_push( $buttons, 'separator', 'tinymceEmoji' );
+//    return $buttons;
+// }
  
 // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
 //emoji sort of works from https://www.npmjs.com/package/tinymce-emoji
 //add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
 
-function myplugin_register_tinymce_javascript( $plugin_array ) {
-   $plugin_array['tinymceEmoji'] = get_template_directory_uri().'/js/tinymce/tinymce-emoji/plugin.min.js';
-   return $plugin_array;
-}
+// function myplugin_register_tinymce_javascript( $plugin_array ) {
+//    $plugin_array['tinymceEmoji'] = get_template_directory_uri().'/js/tinymce/tinymce-emoji/plugin.min.js';
+//    return $plugin_array;
+// }
 
+//getting the tinymce editor stuff
+function tinymce_init() {
+    // Hook to tinymce plugins filter
+    add_filter( 'mce_external_plugins', 'opengraph_tinymce_checker' );
+}
+add_filter('init', 'tinymce_init');
+
+function opengraph_tinymce_checker($init) {
+    // We create a new plugin... linked to a js file.
+    // Mine was created from a plugin... but you can change this to link to a file in your plugin
+    $init['keyup_event'] = get_template_directory_uri() . '/js/opengraph_tinymce_checker.js';
+    return $init;
+}
 
 
 function plus_post(){
