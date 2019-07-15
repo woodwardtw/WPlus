@@ -190,7 +190,7 @@ function plus_post(){
             'textarea_name' => 'pluscontent',
             'paste_remove_spans' => true,
             'teeny' => false,
-             'dfw' => true,
+            'dfw' => true,
             'tinymce' => true,
             'quicktags' => false,
             //'plugins' => 'tinymceEmoji',
@@ -204,6 +204,8 @@ function plus_post(){
             );
     return wp_editor( $content, 'mypluspost', $settings); 
 }
+
+
 
 
 add_action( 'pre-html-upload-ui', '_force_html_uploader' );

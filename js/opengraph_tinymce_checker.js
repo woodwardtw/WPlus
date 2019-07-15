@@ -97,9 +97,9 @@ function processOgText(content){
 	    if (data.hasOwnProperty('images') && data['images'].length != 0){
 	      img = data.images[0].url;
 	    } 
-	    let text = '<a href="'+theLink+'"><div><img src="'+img+'"><h2>' + theName + '</h2>' + '<div class="title">' + title + '<p>'+description+'</p></div></div></a>';
-	    tinymce.activeEditor.execCommand('mceInsertContent', false, text);
-
+	    let text = '<div><img src="'+img+'"><h2><a href="'+theLink+'">' + theName + '</a></h2>' + '<div class="title"><p>' + title + '</p><p>'+description+'</p></div></div>';
+	    //tinymce.activeEditor.execCommand('mceInsertContent', false, text);
+		tinymce.activeEditor.setContent(text, {format: 'raw'})
 	  }
 	});
 }
