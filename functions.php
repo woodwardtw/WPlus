@@ -178,7 +178,7 @@ function opengraph_tinymce_checker($init) {
 
 
 function plus_post(){
-	$content = '';
+	$content = '';//<ul id="furl-list"></ul> was awkward anyway
     $settings =   array(
             'wpautop' => true,
             'editor_height' => '400',
