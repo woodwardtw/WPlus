@@ -79,25 +79,25 @@ function processOgText(content){
 	    //let destination = document.getElementById('furl-list');
 	
 	    let theName = '';
-	    if (data.hasOwnProperty('siteName')){
+	    if (data.hasOwnProperty('siteName') && data.siteName != null){
 	       theName = data.siteName;
 	    }
 	    
 	    let title = theLink;
-	    if ( data.title && data.title != theName && data.title != theLink){
+	    if ( data.title && data.title != theName && data.title != theLink && data.title != null){
 	      title = data.title;
 	    }
 	    
 	    let description = ''
-	    if (data.hasOwnProperty('description')){
+	    if (data.hasOwnProperty('description') && data.description != null){
 	        description = data.description;
 	        }
 	    
 	    let img = 'https://via.placeholder.com/150';
-	    if (data.hasOwnProperty('images') && data['images'].length != 0){
+	    if (data.hasOwnProperty('images') && data['images'].length != 0 && data['images'] != null){
 	      img = data.images[0].url;
 	    } 
-	    let text = '<div><img src="'+img+'"><h2><a href="'+theLink+'">' + theName + '</a></h2>' + '<div class="title"><p>' + title + '</p><p>'+description+'</p></div></div>';
+	    let text = '<div><img src="'+img+'"><h2><a href="'+theLink+'">' + theName + '</a></h2>' + '<div class="title"><p><a href="'+theLink+'">' + title + '</a></p><p><a href="'+theLink+'">'+description+'</a></p></div></div>';
 	    //tinymce.activeEditor.execCommand('mceInsertContent', false, text);
 		tinymce.activeEditor.setContent(text, {format: 'raw'})
 	  }
