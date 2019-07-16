@@ -62,6 +62,10 @@ function processOgText(content){
 
 	getResults.forEach(function(link) {
 	  let theLink = link;
+	  //maybe do this in a smarter way
+	  if (theLink.includes("youtube.com") || theLink.includes("twitter.com") || theLink.includes("vimeo.com") ){
+	  	return;
+	  }
 	  let url = 'https://bionicteaching.com/tools/open-graph-api/?url=' + link
 
 	  fetch(url)
@@ -97,6 +101,9 @@ function processOgText(content){
 	    if (data.hasOwnProperty('images') && data['images'].length != 0 && data['images'] != null){
 	      img = data.images[0].url;
 	    } 
+	    if (data.siteName === null && data.title === null && data.description === null){
+	    	return;
+	    }
 	    let text = '<div><img src="'+img+'"><h2><a href="'+theLink+'">' + theName + '</a></h2>' + '<div class="title"><p><a href="'+theLink+'">' + title + '</a></p><p><a href="'+theLink+'">'+description+'</a></p></div></div>';
 	    //tinymce.activeEditor.execCommand('mceInsertContent', false, text);
 		tinymce.activeEditor.setContent(text, {format: 'raw'})
