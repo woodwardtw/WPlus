@@ -63,7 +63,9 @@ function the_front_posts(){
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
 			$html .= '<div class="plus-author-name">' . $name .'</div>';
 			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . '</div></div>';
-			$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
+			if(get_the_title()){
+				$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
+			}
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
@@ -336,7 +338,16 @@ function filter_ptags_on_images($content)
 // we want it to be run after the autop stuff... 10 is default.
 add_filter('the_content', 'filter_ptags_on_images');
 
+//add filter for title when post has not title
+// add_filter('the_title', 'new_title', 10, 2);
+// function new_title($title, $id) {
+//     if ($title === null || $title == '' || $title == '(no title)'){
+//     	$title = super_short_excerpt();
+// 	}
+//     return $title;
+// }
 
-//deal with empty titles on link posts 
 
-
+// function super_short_excerpt() {
+//     return wp_trim_words(get_the_excerpt(), 5);
+// }

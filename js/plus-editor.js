@@ -60,6 +60,7 @@ jQuery( document ).ready(function() {
         // From the primary toolbar (".media-toolbar-primary")
         // get the insert button view (".media-button-insert")
         // and execute its click (as specified in its options).
-        wp.media.frame.toolbar.get('primary').get('insert').options.click();
+        //document.getElementById('__wp-uploader-id-2').style.display = 'none';
+        //wp.media.frame.toolbar.get('primary').get('insert').options.click();
     } );
 });
