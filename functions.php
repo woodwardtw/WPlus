@@ -61,7 +61,8 @@ function the_front_posts(){
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card">';
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
-			$html .= '<div class="plus-author-name">' . $name .'</div></div>';
+			$html .= '<div class="plus-author-name">' . $name .'</div>';
+			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . '</div></div>';
 			$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
@@ -144,7 +145,7 @@ function plus_author_name(){
 	echo get_the_author_meta('display_name');
 }
 
-//External wp_editor 
+//FRONTEND wp_editor 
 // add new buttons
 //add_filter( 'mce_buttons', 'myplugin_register_buttons' );
 
@@ -176,9 +177,9 @@ function opengraph_tinymce_checker($init) {
     return $init;
 }
 
-
+//make tinymce settings
 function plus_post(){
-	$content = '';//<ul id="furl-list"></ul> was awkward anyway
+	$content = '';
     $settings =   array(
             'wpautop' => true,
             'editor_height' => '400',
@@ -304,7 +305,7 @@ function akv3_editor_char_count() {
 
 
 //from https://code.tutsplus.com/articles/quick-tip-automatically-link-twitter-handles-with-a-content-filter--wp-26134
-function wptuts_twitter_handles($content) {
+function get_twitter_handles($content) {
     $pattern = '/(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9_]+)/i';
     $replace = '<a href="http://www.twitter.com/$1">@$1</a>';
     $content = preg_replace($pattern, $replace, $content);
@@ -312,7 +313,7 @@ function wptuts_twitter_handles($content) {
     return $content;
 }
  
-//add_filter( "the_content", "wptuts_twitter_handles" );
+//add_filter( "the_content", "get_twitter_handles" );
 
 
 /*
@@ -334,3 +335,8 @@ function filter_ptags_on_images($content)
 
 // we want it to be run after the autop stuff... 10 is default.
 add_filter('the_content', 'filter_ptags_on_images');
+
+
+//deal with empty titles on link posts 
+
+

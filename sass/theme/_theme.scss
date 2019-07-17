@@ -65,7 +65,7 @@ h1, h2, h3 {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     display: -webkit-box;
-    max-height: 56px;
+    min-height: 56px;
     margin-left: 0;
     // padding-left: 20px;
 }
@@ -153,6 +153,13 @@ ul#plus-home-list{
 	display: inline-block;
 	vertical-align: top;
 }
+
+.plus-date {
+	display: inline-block;
+	float: right;
+	vertical-align: top;
+}
+
 
 .plus-logged {
 	height: 24px;

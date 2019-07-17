@@ -52,3 +52,14 @@ jQuery( "#plus-form" ).submit(function( event ) {
 });
 
 
+
+//auto insert image on drag upload https://wordpress.stackexchange.com/questions/167143/insert-image-automatically-when-upload-finishes-wordpress-media-uploader
+//to do - try to deal w making media library view not happen
+jQuery( document ).ready(function() {
+    typeof wp.Uploader !== 'undefined' && wp.Uploader.queue.on( 'reset', function () {
+        // From the primary toolbar (".media-toolbar-primary")
+        // get the insert button view (".media-button-insert")
+        // and execute its click (as specified in its options).
+        wp.media.frame.toolbar.get('primary').get('insert').options.click();
+    } );
+});
