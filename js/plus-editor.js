@@ -1,8 +1,13 @@
 //select title on launch of modal
 jQuery('#plus-post').on('shown.bs.modal', function () {
-    jQuery('#plus_title').focus();
-
+    jQuery('#plus_title').focus();    
 })  
+
+jQuery('#plus-post').on('hide.bs.modal', function () {
+    console.log('hide') 
+    tinyMCE.get('mypluspost').setContent('')//cleans out editor if canceled
+}) 
+
 
 /*
 **
@@ -38,46 +43,12 @@ videos.forEach(function(video) {
 });
 
 
-//PREVENTS RAPID SUBMIT OF FORM ON THE FRONT END
+//PREVENTS UNINTENTIONAL RAPID SUBMIT OF FORM ON THE FRONT END
 jQuery( "#plus-form" ).submit(function( event ) {
    jQuery(this).submit(function() {
         return false;
     });
     return true;
 });
-
-
-
-
-
-//IN PROGRESS
-
-//from https://gist.github.com/RadGH/523bed274f307830752c
-
-// function tmce_getContent(editor_id, textarea_id) {
-//   if ( typeof editor_id == 'undefined' ) editor_id = wpActiveEditor;
-//   if ( typeof textarea_id == 'undefined' ) textarea_id = editor_id;
-  
-//   if ( jQuery('#wp-'+editor_id+'-wrap').hasClass('tmce-active') && tinyMCE.get(editor_id) ) {
-//     return tinyMCE.get(editor_id).getContent();
-//   }else{
-//     return jQuery('#'+textarea_id).val();
-//   }
-// }
-
-// function watchEditor(){
-// 	if ( typeof editor_id == 'undefined' ) editor_id = wpActiveEditor;
-// 	if ( typeof textarea_id == 'undefined' ) textarea_id = editor_id;
-	  
-// 	  if ( jQuery('#wp-'+editor_id+'-wrap').hasClass('tmce-active') && tinyMCE.get(editor_id) ) {
-// 	    .addEventListener('input', function() {
-// 	    // event handling code for sane browsers
-// 	    tmce_getContent();
-// 	  }, false);
-// 	  }
-// }
-
-
-
 
 

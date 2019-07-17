@@ -28,7 +28,6 @@ jQuery(document).ready(function($) {
 
     // This function allows the script to run from both locations (visual and text)
     function openGraphMatch(content) {
-
         // Now, you can further process the data in a single function
         console.log(content);
         processOgText(content);
@@ -83,13 +82,8 @@ function processOgText(content){
 	    //let destination = document.getElementById('furl-list');
 	
 	    let theName = '';
-	    if (data.hasOwnProperty('siteName') && data.siteName != null){
-	       theName = data.siteName;
-	    }
-	    
-	    let title = theLink;
-	    if ( data.title && data.title != theName && data.title != theLink && data.title != null){
-	      title = data.title;
+	    if (data.hasOwnProperty('title') && data.title != null){
+	       theName = data.title;
 	    }
 	    
 	    let description = ''
@@ -104,8 +98,9 @@ function processOgText(content){
 	    if (data.siteName === null && data.title === null && data.description === null){
 	    	return;
 	    }
-	    let text = '<div><img src="'+img+'"><h2><a href="'+theLink+'">' + theName + '</a></h2>' + '<div class="title"><p><a href="'+theLink+'">' + title + '</a></p><p><a href="'+theLink+'">'+description+'</a></p></div></div>';
-	    //tinymce.activeEditor.execCommand('mceInsertContent', false, text);
+	    let text = '<div class="furl-content"><img class="furl-img" src="'+img+'"><h2 class="furl-name"><a href="'+theLink+'">' + theName + '</a></h2>';
+	    //text += '<div class="furl-title"><p><a href="'+theLink+'">' + title + '</a></p></div>';
+	    text += '<p class="furl-description"><a href="'+theLink+'">'+description+'</a></p></div>';
 		tinymce.activeEditor.setContent(text, {format: 'raw'})
 	  }
 	});
