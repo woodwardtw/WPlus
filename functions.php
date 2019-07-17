@@ -134,7 +134,7 @@ add_filter('comment_form_defaults', 'wpsites_modify_comment_form_text_area');
 function comment_count($post_id){
 	$num = get_comments_number();
 	if ($num > 0){
-		return '<button class="see-comments" data-postId=' . $post_id . '">See all ' . $num . ' comments.</button>';
+		return '<button class="see-comments" data-postId="' . $post_id . '">See all ' . $num . ' comments.</button><div id="comment-home-'.$post_id.'"></div>';
 	}
 }
 

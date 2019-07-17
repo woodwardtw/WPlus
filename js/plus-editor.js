@@ -15,25 +15,39 @@ EXISTING COMMENTS LAND
 */
 
 jQuery( document ).ready(function() {
+	console.log('ready');
 		activate_see_comments_buttons();
 
 	})
 
 function activate_see_comments_buttons(){
-	let buttons = document.querySelectorAll('see-comments');
+	let buttons = document.querySelectorAll('.see-comments');
 	console.log(buttons);
 	buttons.forEach((button) => {
 	  button.addEventListener('click', () => {
-	    console.log("forEach worked");
+	    let postId = button.dataset.postid;
+	    fetch_comments_api(postId);
 	  });
 	});
 }
 
 
 
-function fetch_comments_api(){
-	//wp-json/wp/v2/comments?post=5198
-	console.log('click click')
+function fetch_comments_api(id){
+	//wp-json/wp/v2/comments?post=5198	
+	let url = 'wp-json/wp/v2/comments?post=' + id;
+
+	  fetch(url)
+	    .then(function(response) {
+	      return response.json();
+	    })
+	    .then(function(myJson) {
+	      var data = JSON.stringify(myJson);
+	      
+	      data = JSON.parse(data);
+	      console.log(data);
+	    });
+
 }
 
 /*
