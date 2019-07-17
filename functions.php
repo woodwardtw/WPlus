@@ -338,16 +338,19 @@ function filter_ptags_on_images($content)
 // we want it to be run after the autop stuff... 10 is default.
 add_filter('the_content', 'filter_ptags_on_images');
 
-//add filter for title when post has not title
-// add_filter('the_title', 'new_title', 10, 2);
-// function new_title($title, $id) {
-//     if ($title === null || $title == '' || $title == '(no title)'){
-//     	$title = super_short_excerpt();
-// 	}
-//     return $title;
-// }
+
+//add filter for title when post has no title BUT ONLY ON ADMIN SIDE
+add_filter('the_title', 'new_title', 10, 2);
+function new_title($title, $id) {
+	if ( is_admin() ) {
+	    if ($title === null || $title == '' || $title == '(no title)'){
+	    	$title = super_short_excerpt();
+		}
+	}
+    return $title;
+}
 
 
-// function super_short_excerpt() {
-//     return wp_trim_words(get_the_excerpt(), 5);
-// }
+function super_short_excerpt() {
+    return wp_trim_words(get_the_excerpt(), 5);
+}
