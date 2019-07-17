@@ -26,14 +26,14 @@ function activate_see_comments_buttons(){
 	buttons.forEach((button) => {
 	  button.addEventListener('click', () => {
 	    let postId = button.dataset.postid;
-	    fetch_comments_api(postId);
+	    build_comments_api(postId);
 	  });
 	});
 }
 
 
 
-function fetch_comments_api(id){
+function build_comments_api(id){
 	//wp-json/wp/v2/comments?post=5198	
 	let url = 'wp-json/wp/v2/comments?post=' + id;
 
@@ -44,11 +44,14 @@ function fetch_comments_api(id){
 	    .then(function(myJson) {
 	      var data = JSON.stringify(myJson);
 	      
-	      data = JSON.parse(data);
-	      console.log(data);
+	      var comments = JSON.parse(data);
+	       comments.forEach(function(comment){
+	      	console.log(comment.content.rendered)
+	      	jQuery('#comment-home-'+id).append(comment.content.rendered);
+	      })
 	    });
-
 }
+
 
 /*
 **
