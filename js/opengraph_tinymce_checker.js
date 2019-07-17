@@ -106,13 +106,3 @@ function processOgText(content){
 	});
 }
 
-
-fetch(baseUrl + 'api/Customer/GetCustomerAccount/' + value, {
-    method: 'GET',
-  })
-  .then((response) => response.json())
-  .then((responseJson) => {
-    this.myFunction(responseJson);
-  })
-
-

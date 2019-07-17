@@ -8,6 +8,33 @@ jQuery('#plus-post').on('hide.bs.modal', function () {
     tinyMCE.get('mypluspost').setContent('')//cleans out editor if canceled
 }) 
 
+/*
+**
+EXISTING COMMENTS LAND
+**
+*/
+
+jQuery( document ).ready(function() {
+		activate_see_comments_buttons();
+
+	})
+
+function activate_see_comments_buttons(){
+	let buttons = document.querySelectorAll('see-comments');
+	console.log(buttons);
+	buttons.forEach((button) => {
+	  button.addEventListener('click', () => {
+	    console.log("forEach worked");
+	  });
+	});
+}
+
+
+
+function fetch_comments_api(){
+	//wp-json/wp/v2/comments?post=5198
+	console.log('click click')
+}
 
 /*
 **
@@ -21,17 +48,9 @@ jQuery(document).on('focusin', function(e) {
     }
 });
 
-//maybe auto embed upload
-jQuery(document).ready(function(){
-    if (typeof 'switchUploader' === 'function') switchUploader(1);
-    if(jQuery(".savesend input")){
-        jQuery(".savesend input").click();
-        console.log('fired it')
-    }
-});
+
 
 //full size youtube video stuff
-
 var videos = document.querySelectorAll('iframe[src^="https://www.youtube.com/"], iframe[src^="https://player.vimeo.com"], iframe[src^="https://www.youtube-nocookie.com/"], iframe[src^="https://www.nytimes.com/"]'); //get video iframes for regular youtube, privacy+ youtube, and vimeo
 
 
@@ -61,6 +80,6 @@ jQuery( document ).ready(function() {
         // get the insert button view (".media-button-insert")
         // and execute its click (as specified in its options).
         //document.getElementById('__wp-uploader-id-2').style.display = 'none';
-        //wp.media.frame.toolbar.get('primary').get('insert').options.click();
+        wp.media.frame.toolbar.get('primary').get('insert').options.click();
     } );
 });
