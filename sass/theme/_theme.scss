@@ -199,6 +199,29 @@ ul#plus-home-list{
 	border: none;
 	padding-left: 0;
 	margin-left: 0;
+	color: #2962ff;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+.comment-holder p {
+	padding-left: 50px;	
+	padding-top: 0px;
+}
+
+.comment-author {
+	font-weight: 700;
+	color: #000;
+	display: inline-block;
+}
+
+.comment-author-img{
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 10px;
+	display: inline-block;
 }
 
 //modal editor

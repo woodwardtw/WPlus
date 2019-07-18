@@ -121,20 +121,10 @@ add_filter('comment_form_defaults', 'wpsites_modify_comment_form_text_area');
 
 
 
-// function ensure_post_title(){
-// 	global $post;
-// 	$title = get_the_title($post->ID);
-// 	if($title){
-// 		return $title;
-// 	} else {
-// 		return 'Read more . . . ';
-// 	}
-// }
-
 function comment_count($post_id){
 	$num = get_comments_number();
 	if ($num > 0){
-		return '<button class="see-comments" data-postId="' . $post_id . '">See all ' . $num . ' comments.</button><div id="comment-home-'.$post_id.'"></div>';
+		return '<button class="see-comments" data-postId="' . $post_id . '">Show all ' . $num . ' comments.</button><div class="comment-holder" id="comment-home-'.$post_id.'"></div>';
 	}
 }
 
@@ -354,3 +344,41 @@ function new_title($title, $id) {
 function super_short_excerpt() {
     return wp_trim_words(get_the_excerpt(), 5);
 }
+
+
+function better_default_image_size() {
+    // Set default values for the upload media box
+    update_option('image_default_align', 'center' );
+}
+add_action('after_setup_theme', 'better_default_image_size');
+
+
+//adds author image to comment JSON
+add_action( 'rest_api_init', function () {
+    register_rest_field( 'comment', 'comment_author_img', array(
+        'get_callback' => function( $comment_arr ) {
+            $comment_obj = get_comment( $comment_arr['id'] );
+            $author_id = $comment_arr['author'];
+            $current_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));	
+            return $comment_obj->comment_author_img = $current_img;
+        },
+        // 'update_callback' => function( $karma, $comment_obj ) {
+        //     $ret = wp_update_comment( array(
+        //         'comment_ID'    => $comment_obj->comment_ID,
+        //         'comment_karma' => $karma
+        //     ) );
+        //     if ( false === $ret ) {
+        //         return new WP_Error(
+        //           'rest_comment_author_img_failed',
+        //           __( 'Failed to update author image.' ),
+        //           array( 'status' => 500 )
+        //         );
+        //     }
+        //     return true;
+        // },
+        'schema' => array(
+            'description' => __( 'comment_author_img' ),
+            'type'        => 'string'
+        ),
+    ) );
+} );

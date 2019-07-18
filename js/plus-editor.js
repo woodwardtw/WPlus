@@ -45,9 +45,16 @@ function build_comments_api(id){
 	      var data = JSON.stringify(myJson);
 	      
 	      var comments = JSON.parse(data);
+	      console.log(comments);
 	       comments.forEach(function(comment){
-	      	console.log(comment.content.rendered)
-	      	jQuery('#comment-home-'+id).append(comment.content.rendered);
+	      	let commentBody = comment.content.rendered;
+	      	let commentAuthor = comment.author_name;
+	      	if (comment.comment_author_img){
+	      		var author_img = comment.comment_author_img;
+	      	} else {
+	      		var author_img = comment.author_avatar_urls[48]
+	      	}
+	      	jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>');
 	      })
 	    });
 }
