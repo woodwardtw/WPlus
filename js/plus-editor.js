@@ -54,7 +54,8 @@ function build_comments_api(id){
 	      	} else {
 	      		var author_img = comment.author_avatar_urls[48]
 	      	}
-	      	jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>');
+	      	jQuery('#comment-post-'+id + ' button').hide('fast');
+	      	jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>').show('slow');
 	      })
 	    });
 }
