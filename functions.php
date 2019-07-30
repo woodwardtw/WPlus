@@ -240,27 +240,39 @@ function form_builder(){
 
 add_action( 'admin_post_process_form', 'process_form_data' );
 function process_form_data() {
-  // form processing code here
-	if(isset($_POST['plus_title'])){
-		$title = $_POST['plus_title'];
-	} else {
-		$title = 'Read more . . . ';
-	}
-	if(isset($_POST['pluscontent'])){
-		$body = $_POST['pluscontent'];
-	} else {
-		$body = ' ';
-	}
 
-	if(isset($_SESSION['message']))
-	{
-	    echo $_SESSION['message'];
-	    unset($_SESSION['message']);
-	}
+	if ( 
+	    ! isset( $_POST['wplus_nonce'] ) 
+	    || ! wp_verify_nonce( $_POST['wplus_nonce'], 'process_form' ) 
+	) {
 
-	plus_post_creation($title, $body);
-	//var_dump($_POST);
-	header('Location: ' . get_home_url()); //redirect to page to reload
+   print 'Sorry, your nonce did not verify.';
+   exit;
+
+	} else {
+
+	  // form processing code here
+		if(isset($_POST['plus_title'])){
+			$title = $_POST['plus_title'];
+		} else {
+			$title = 'Read more . . . ';
+		}
+		if(isset($_POST['pluscontent'])){
+			$body = $_POST['pluscontent'];
+		} else {
+			$body = ' ';
+		}
+
+		if(isset($_SESSION['message']))
+		{
+		    echo $_SESSION['message'];
+		    unset($_SESSION['message']);
+		}
+
+		plus_post_creation($title, $body);
+		//var_dump($_POST);
+		header('Location: ' . get_home_url()); //redirect to page to reload
+	}
 }
 
 

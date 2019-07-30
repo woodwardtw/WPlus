@@ -46,9 +46,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		      <div class="modal-body">
 		        <div id="the-person"></div>
 		        <?php echo form_builder();?>
-		        <input type="hidden" name="action" value="process_form">
+		          <input type="hidden" name="action" value="process_form">
 				  <input type="text" name="plus_title" id="plus_title" aria-label="Title" placeholder="Title">
 				  <?php plus_post() ;?>
+				  <?php wp_nonce_field( 'process_form', 'wplus_nonce' ); ?>
 				  <input type="submit" name="submit" value="Post" id="post-plus-button">				  
 				</form>
 				<button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">Cancel</button>		       					
