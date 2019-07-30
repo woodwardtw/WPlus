@@ -1,11 +1,25 @@
 //select title on launch of modal
 jQuery('#plus-post').on('shown.bs.modal', function () {
-    jQuery('#plus_title').focus();    
+    jQuery('#plus_title').focus(); 
+    jQuery('.writing-circle').animate({
+	    opacity: 0,
+	    height: 0,
+	    width: 0,
+	  }, 500, function() {
+	    // Animation complete.
+	  });   
 })  
 
 jQuery('#plus-post').on('hide.bs.modal', function () {
     console.log('hide') 
     tinyMCE.get('mypluspost').setContent('')//cleans out editor if canceled
+    jQuery('.writing-circle').animate({
+	    opacity: 1,
+	    height: 60,
+	    width: 60,
+	  }, 500, function() {
+	    // Animation complete.
+	  });   
 }) 
 
 /*
