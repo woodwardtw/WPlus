@@ -26,6 +26,11 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/theme.min.js' );
 		wp_enqueue_script( 'understrap-scripts', get_template_directory_uri() . '/js/theme.min.js', array(), $js_version, true );
 		wp_enqueue_script( 'plus-script', get_template_directory_uri() . '/js/plus-editor.js', array(), '1.0', true );
+		wp_localize_script('plus-script', 'ajax_var', array(
+		    'url' => admin_url('admin-ajax.php'),
+		    'nonce' => wp_create_nonce('ajax-nonce')
+		));
+
 		wp_enqueue_script( 'ajax-comments', get_template_directory_uri() . '/js/ajax-comments.js', array('jquery'), '1.0', true );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
