@@ -1,13 +1,6 @@
 //select title on launch of modal
 jQuery('#plus-post').on('shown.bs.modal', function () {
-    jQuery('#plus_title').focus(); 
-    jQuery('.writing-circle').animate({
-	    opacity: 0,
-	    height: 0,
-	    width: 0,
-	  }, 500, function() {
-	    // Animation complete.
-	  });   
+    jQuery('#plus_title').focus();     
 })  
 
 jQuery('#plus-post').on('hide.bs.modal', function () {
@@ -22,9 +15,21 @@ jQuery('#plus-post').on('hide.bs.modal', function () {
 	  });   
 }) 
 
+ 
+
+jQuery( "#red-writing-button, #write" ).click(function() {
+ jQuery('.writing-circle').animate({
+	    opacity: 0,
+	    height: 0,
+	    width: 0,
+	  }, 400, function() {
+	    // Animation complete.
+	  });  
+});
+
 /*
 **
-EXISTING COMMENTS LAND
+SHOW EXISTING COMMENTS LAND
 **
 */
 
@@ -48,10 +53,8 @@ function showCommentSubmit(){
 	let commentBoxes = document.querySelectorAll('textarea');
 	commentBoxes.forEach((box) => {
 	  box.addEventListener('click', () => {
-	  	console.log(box.id)
 	  	buttonHolderID = 'submit-'+box.id.substring(8, box.id.length)
-	    document.getElementById(buttonHolderID).parentNode.style.height = '50px';
-	   	
+	    document.getElementById(buttonHolderID).parentNode.style.height = '50px';	   	
 	  });
 	});
 }
@@ -60,6 +63,14 @@ function showCommentSubmit(){
 function build_comments_api(id){
 	//wp-json/wp/v2/comments?post=5198	
 	let url = 'wp-json/wp/v2/comments?post=' + id;
+
+	jQuery('#show-'+id).animate({
+			    opacity: 0,
+			    height: 0
+			  }, 300, function() {
+			    // Animation complete.
+			    jQuery('#show-'+id).remove();
+			  });   
 
 	  fetch(url)
 	    .then(function(response) {
@@ -78,8 +89,7 @@ function build_comments_api(id){
 	      	} else {
 	      		var author_img = comment.author_avatar_urls[48]
 	      	}
-	      	jQuery('#comment-post-'+id + ' button').hide('fast');
-	      	jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>').show('slow');
+	      	jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>').show('normal');
 	      })
 	    });
 }
