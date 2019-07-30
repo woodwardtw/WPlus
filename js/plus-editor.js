@@ -17,12 +17,11 @@ EXISTING COMMENTS LAND
 jQuery( document ).ready(function() {
 	console.log('ready');
 		activate_see_comments_buttons();
-
+		showCommentSubmit();
 	})
 
 function activate_see_comments_buttons(){
 	let buttons = document.querySelectorAll('.see-comments');
-	console.log(buttons);
 	buttons.forEach((button) => {
 	  button.addEventListener('click', () => {
 	    let postId = button.dataset.postid;
@@ -31,6 +30,17 @@ function activate_see_comments_buttons(){
 	});
 }
 
+function showCommentSubmit(){
+	let commentBoxes = document.querySelectorAll('textarea');
+	commentBoxes.forEach((box) => {
+	  box.addEventListener('click', () => {
+	  	console.log(box.id)
+	  	buttonHolderID = 'submit-'+box.id.substring(8, box.id.length)
+	    document.getElementById(buttonHolderID).parentNode.style.height = '50px';
+	   	
+	  });
+	});
+}
 
 
 function build_comments_api(id){

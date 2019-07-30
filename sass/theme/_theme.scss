@@ -351,6 +351,11 @@ comments
 	color:#4285f4;
 }
 
+p.form-submit {
+	height: 0;
+	overflow: hidden;
+}
+
 /*FRONT END TINYMCE TOOLBAR*/
 .mce-container, .mce-container *, .mce-widget, .mce-widget *, .mce-reset, .wp-editor-container {
 	border: 0 !important;
