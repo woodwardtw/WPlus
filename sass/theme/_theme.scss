@@ -498,6 +498,11 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
     position:absolute;
 }
 
+p .video-responsive {
+	margin-right: -20px;
+	margin-left: -20px;
+}
+
 @media (min-width: 768px) {  
   .card-columns {column-count: 2;}
 }
