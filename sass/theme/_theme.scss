@@ -166,7 +166,7 @@ ul#plus-home-list{
 	width: 24px;
 	border-radius: 50%;
 	margin-right: 10px;
-	margin-left: 20px;
+	margin-left: 0px;
 }
 
 .plus-logged-menu {
@@ -327,6 +327,21 @@ ul#plus-home-list{
 
 #plus-post .modal-body {
 	padding-bottom: 70px;
+}
+
+.single p.form-submit {
+	height: 40px;
+	overflow: visible;
+	margin-top: 10px;
+}
+
+.single .plus-comment-box {
+	position: relative;
+}
+
+.single .comment-form-comment textarea {
+	width: 90%;
+	margin-bottom: 10px;
 }
 
 /*

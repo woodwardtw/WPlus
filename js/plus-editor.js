@@ -54,7 +54,7 @@ function showCommentSubmit(){
 	commentBoxes.forEach((box) => {
 	  box.addEventListener('click', () => {
 	  	buttonHolderID = 'submit-'+box.id.substring(8, box.id.length)
-	    document.getElementById(buttonHolderID).parentNode.style.height = '50px';	   	
+	    document.getElementById(buttonHolderID).parentNode.style.height = '60px';	   	
 	  });
 	});
 }
