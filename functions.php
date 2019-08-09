@@ -60,6 +60,9 @@ function the_front_posts(){
 			$author_id = get_the_author_meta('ID');
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card' . sticky_true($post_id) . '">';
+			if(sticky_true($post_id) === ' sticky '){
+				$html .= '<i class="fa fa-thumb-tack pinned" aria-label="Pinned post." title="This post is pinned."></i>';
+			}
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '" alt="author profile image.">';
 			$html .= '<div class="plus-author-name">' . $name .'</div>';
 			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . edit_it($post_id, $author_id) .'</div></div>';

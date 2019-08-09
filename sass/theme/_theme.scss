@@ -25,39 +25,47 @@ h1, h2, h3 {
     padding-bottom: 20px;
 }
 
-.sticky:after {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 30px 30px 0;
-  border-color: transparent #db4437 transparent transparent;
-  right: 0;
-  top: 0;
-  position: absolute;
+// .sticky:after {
+//   content: '';
+//   width: 0;
+//   height: 0;
+//   border-style: solid;
+//   border-width: 0 30px 30px 0;
+//   border-color: transparent #db4437 transparent transparent;
+//   right: 0;
+//   top: 0;
+//   position: absolute;
+// }
+
+.pinned {
+	float: right;
+    text-align: right;
+    margin: 10px 10px 0 0;
+    padding: 3px;
 }
 
-
 /*red background color fade on load for sticky posts*/
-.card.sticky {
-	 animation: colorchange 2s; /* animation-name followed by duration in seconds*/
-         /* you could also use milliseconds (ms) or something like 2.5s */
-      -webkit-animation: colorchange 2s; /* Chrome and Safari */
-      animation-iteration-count: 1;
+// .card.sticky {
+// 	 animation: colorchange 3s; /* animation-name followed by duration in seconds*/
+//          /* you could also use milliseconds (ms) or something like 2.5s */
+//       -webkit-animation: colorchange 3s; /* Chrome and Safari */
+//       animation-iteration-count: 1;
+//       animation-timing-function: ease-in-out;
+// 	-webkit-animation-timing-function: ease-in-out;
+// 	border: 3px solid #db4437;
+//     }
 
-    }
+//     @keyframes colorchange
+//     {
+//       0% {border: white 3px solid;}
+//       100%   {border: #db4437 3px solid;}
+//     }
 
-    @keyframes colorchange
-    {
-      0%   {background: #db4437;}
-      100% {background: white;}
-    }
-
-    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-    {
-      0%   {background: #db4437;}
-      100% {background: white;}
-    }
+//     @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+//     {
+//       0%   {border: white 3px solid;}
+//       100%   {border: #db4437 3px solid;}
+//     }
 
 
 
@@ -591,16 +599,17 @@ p .video-responsive {
   		background-color: #efefef;
   		cursor: pointer;
   	}
+  	  #search {
+  		width: 150px;
+  		overflow: hidden;
+  	}
 }
 
 @media (min-width: 768px) {  
   .card-columns {
   	column-count: 2;
   }
-  #search {
-  		width: 150px;
-  		overflow: hidden;
-  	}
+
 
 }
 
