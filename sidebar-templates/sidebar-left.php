@@ -30,6 +30,9 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 		<li id="profile"><a href="<?php echo get_edit_user_link(get_current_user_id()) ;?>"><i class="fa fa-user-circle"></i>Profile</a></li>
 	</ul>
 <?php endif; ?>
+<ul id="plus-home-list">
+		<li id="home"><a href="<?php echo home_url(); ?>"><i class="fa fa-home"></i>Home</a></li>
+	</ul>
 <?php dynamic_sidebar( 'left-sidebar' ); ?>
 
 </div><!-- #left-sidebar -->

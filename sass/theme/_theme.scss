@@ -34,10 +34,17 @@ h1, h2, h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     height: 65px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar-light .navbar-brand, .navbar-light .navbar-brand a {
 	color: #676767;
+}
+
+.content-area, #left-sidebar {
+	padding-top: 60px;
 }
 
 .whats-new {
@@ -70,25 +77,28 @@ h1, h2, h3 {
     // padding-left: 20px;
 }
 
-ul#plus-home-list{
+#left-sidebar ul{
 	list-style-type: none;
 	width: 200px;
 	margin: 0;
 	padding: 0;
-	position: fixed;
 }
 
-#plus-home-list li {
+#main-menu {
+	margin-right: 80px;
+}
+
+#left-sidebar li {
 	padding: 10px 15px;
 	list-style-type: none;
 	display: block;	
 }
 
-#plus-home-list li:hover {
+#left-sidebar li:hover {
 	background-color: #e7e7e7;
 }
 
-#plus-home-list li a {
+#left-sidebar li a {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -97,9 +107,17 @@ ul#plus-home-list{
 }
 
 
-#plus-home-list i {
+#left-sidebar i {
 	margin-right: 20px;
 	font-size: 1.4em;
+}
+
+#left-sidebar h3 {
+	font-size: 1.5em;
+	color: #676767;
+	text-transform: uppercase;
+	border-bottom: 1px solid #676767;
+	font-weight: 300;
 }
 
 .plus h2:after {
