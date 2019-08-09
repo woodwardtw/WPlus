@@ -101,7 +101,9 @@ function processOgText(content){
 	    let text = '<div class="furl-content"><img class="furl-img" src="'+img+'"><h2 class="furl-name"><a href="'+theLink+'">' + theName + '</a></h2>';
 	    //text += '<div class="furl-title"><p><a href="'+theLink+'">' + title + '</a></p></div>';
 	    text += '<p class="furl-description"><a href="'+theLink+'">'+description+'</a></p></div>';
-		tinymce.activeEditor.setContent(text, {format: 'raw'})
+	    let currentText = tinymce.activeEditor.getContent();
+	    let urlRemoved = currentText.replace(theLink,'')
+		tinymce.activeEditor.setContent(urlRemoved + text, {format: 'raw'})
 	  }
 	});
 }
