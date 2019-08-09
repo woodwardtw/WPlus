@@ -38,6 +38,26 @@ h1, h2, h3 {
 }
 
 
+/*red background color fade on load for sticky posts*/
+.card.sticky {
+	 animation: colorchange 2s; /* animation-name followed by duration in seconds*/
+         /* you could also use milliseconds (ms) or something like 2.5s */
+      -webkit-animation: colorchange 2s; /* Chrome and Safari */
+      animation-iteration-count: 1;
+
+    }
+
+    @keyframes colorchange
+    {
+      0%   {background: #db4437;}
+      100% {background: white;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: #db4437;}
+      100% {background: white;}
+    }
 
 
 
