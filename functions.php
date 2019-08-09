@@ -51,7 +51,7 @@ function the_front_posts(){
 	if ( $plus_query->have_posts() ) {
 		echo '<div class="card-columns plus" id="gplus">';
 		if(is_user_logged_in()){
-		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '"><div class="whats-new"><button id="write"  data-toggle="modal" data-target="#plus-post">What\'s new with you?</button></div></div></div>';
+		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '" alt="Author profile photo."><div class="whats-new"><button id="write"  data-toggle="modal" data-target="#plus-post">What\'s new with you?</button></div></div></div>';
 		}
 		while ( $plus_query->have_posts() ) {
 			$plus_query->the_post();
@@ -60,7 +60,7 @@ function the_front_posts(){
 			$author_id = get_the_author_meta('ID');
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card">';
-			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
+			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '" alt="author profile image.">';
 			$html .= '<div class="plus-author-name">' . $name .'</div>';
 			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . edit_it($post_id, $author_id) .'</div></div>';
 			if(get_the_title()){
@@ -208,7 +208,7 @@ function wpsites_modify_comment_form_text_area($arg) {
 	global $post;
 	$logged_in = get_current_user_id();
 	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
-    $arg['comment_field'] = '<div class="comment-form-comment"><div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '"><textarea id="comment-'. $post->ID .'" name="comment" cols="45" rows="1" aria-required="true" aria-label="Comment" placeholder="Add a comment..."></textarea></div></div>';
+    $arg['comment_field'] = '<div class="comment-form-comment"><div class="plus-comment-box"><img class="plus-logged" src="' . $current_img . '" alt="user photo"><textarea id="comment-'. $post->ID .'" name="comment" cols="45" rows="1" aria-required="true" aria-label="Comment" placeholder="Add a comment..."></textarea></div></div>';
      $defaults['title_reply_before'] = '<span id="reply-title-'.$post->ID.'" class="comment-reply-title">';
     return $arg;
 }
@@ -375,7 +375,7 @@ function process_form_data() {
 function menubar_user_icon(){
 	$logged_in = get_current_user_id();
 	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
-	return '<a href="'.get_edit_user_link($logged_in).'"><img class="plus-logged-menu" src="' . $current_img . '"></a>';
+	return '<a href="'.get_edit_user_link($logged_in).'"><img class="plus-logged-menu" src="' . $current_img . '" alt="user profile image"></a>';
 }
 
 

@@ -320,7 +320,7 @@ h1, h2, h3 {
     border: none;
 }
 //single post 
-#single-wrapper .site-main {
+#single-wrapper .site-main, #page-wrapper .site-main {
 	max-width: 600px;
 	display: block;
 	margin: 0 auto;
@@ -333,7 +333,7 @@ h1, h2, h3 {
     padding-top: 20px;
 }
 
-#single-wrapper .entry-title {
+#single-wrapper .entry-title, #page-wrapper .entry-title {
 	padding-left: 20px;
 	font-size: 24px;
     line-height: 24px;
@@ -342,7 +342,7 @@ h1, h2, h3 {
 
 }
 
-#single-wrapper .entry-content p {
+#single-wrapper .entry-content p, #page-wrapper .entry-content p {
 	padding: 20px;
 }
 
