@@ -62,7 +62,7 @@ function the_front_posts(){
 			$html .= '<div class="card">';
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '">';
 			$html .= '<div class="plus-author-name">' . $name .'</div>';
-			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . '</div></div>';
+			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . edit_it($post_id, $author_id) .'</div></div>';
 			if(get_the_title()){
 				$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
 			}
@@ -81,6 +81,13 @@ function the_front_posts(){
 		// no posts found
 	}
 
+}
+
+function edit_it($post_id, $author_id){
+	if ($author_id === get_current_user_id() || current_user_can('administrator')){
+		$link = get_edit_post_link( $post_id );
+		return '<div class="edit-link"><a href="' . $link . '">edit</a></div>';
+	}
 }
 
 /*
