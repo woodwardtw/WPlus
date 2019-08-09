@@ -59,7 +59,7 @@ function the_front_posts(){
 			$name = get_the_author_meta('display_name');					
 			$author_id = get_the_author_meta('ID');
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
-			$html .= '<div class="card">';
+			$html .= '<div class="card' . sticky_true($post_id) . '">';
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '" alt="author profile image.">';
 			$html .= '<div class="plus-author-name">' . $name .'</div>';
 			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . edit_it($post_id, $author_id) .'</div></div>';
@@ -88,6 +88,13 @@ function edit_it($post_id, $author_id){
 		$link = get_edit_post_link( $post_id );
 		return '<div class="edit-link"><a href="' . $link . '">edit</a></div>';
 	}
+}
+
+
+function sticky_true($post_id){
+	if ( is_sticky($post_id) ) {
+     	return ' sticky ';
+	} 
 }
 
 /*
