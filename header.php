@@ -54,7 +54,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					<?php } else {
 						the_custom_logo();
 					} ?><!-- end custom logo -->
-					<form action="<?php echo home_url( '/' ); ?>" method="get" class="col-md-6 align-self-center">
+					<form action="<?php echo home_url( '/' ); ?>" method="get" class="col-lg-6 col-md-2 align-self-center search">
 					    <input placeholder="Search" aria-label="search" type="text" name="s" id="search" value="<?php the_search_query(); ?>" />
 					</form>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">

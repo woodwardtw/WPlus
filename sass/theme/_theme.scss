@@ -31,7 +31,6 @@ h1, h2, h3 {
     box-shadow: 0 1px 8px rgba(0,0,0,.3);
     background-color: #fff;
     font-weight: 500;
-    overflow: hidden;
     text-overflow: ellipsis;
     height: 65px;
     position: fixed;
@@ -540,22 +539,53 @@ p .video-responsive {
 	margin-left: -20px;
 }
 
+@media (max-width: 768px){
+	.search {
+  		display: none;
+  	}
+  	.show ul {
+  		background-color: #fff;
+  		z-index: 3000;
+  	}
+
+  	.show ul li {
+  		padding-left: 10px;  		
+  	}
+  	.show ul li:hover{
+  		background-color: #efefef;
+  		cursor: pointer;
+  	}
+}
+
 @media (min-width: 768px) {  
-  .card-columns {column-count: 2;}
+  .card-columns {
+  	column-count: 2;
+  }
+  #search {
+  		width: 150px;
+  		overflow: hidden;
+  	}
+
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
- .card-columns {column-count: 2;}
+ .card-columns {
+ 	column-count: 2;
+ }
 }
  
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  
-   .card-columns {column-count: 3;} 
+   .card-columns {
+   	column-count: 3;
+   } 
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 2200px) {  
-   .card-columns {column-count: 4;} 
+   .card-columns {
+   	column-count: 4;
+   } 
 }
 
