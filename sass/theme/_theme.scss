@@ -42,6 +42,7 @@ h1, h2, h3 {
     text-align: right;
     margin: 10px 10px 0 0;
     padding: 3px;
+    color: #424242;
 }
 
 /*red background color fade on load for sticky posts*/
@@ -584,9 +585,9 @@ p .video-responsive {
 }
 
 @media (max-width: 768px){
-	.search {
-  		display: none;
-  	}
+	// .search {
+ //  		display: none;
+ //  	}
   	.show ul {
   		background-color: #fff;
   		z-index: 3000;

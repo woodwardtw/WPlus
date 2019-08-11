@@ -383,9 +383,11 @@ function process_form_data() {
 
 
 function menubar_user_icon(){
-	$logged_in = get_current_user_id();
-	$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
-	return '<a href="'.get_edit_user_link($logged_in).'"><img class="plus-logged-menu" src="' . $current_img . '" alt="user profile image"></a>';
+	if(get_current_user_id()){
+		$logged_in = get_current_user_id();
+		$current_img = get_avatar_url($logged_in, array('width'=>'36','height'=>'36'));	
+		return '<a href="'.get_edit_user_link($logged_in).'"><img class="plus-logged-menu" src="' . $current_img . '" alt="user profile image"></a>';
+	}
 }
 
 
