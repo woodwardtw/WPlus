@@ -392,6 +392,10 @@ h1, h2, h3 {
 	padding: 20px;
 }
 
+#single-wrapper .entry-content .gform_body, #page-wrapper .entry-content .gform_body, #full-width-page-wrapper .entry-content .gform_body{
+	padding: 20px;
+}
+
 #plus-post .modal-body {
 	padding-bottom: 70px;
 }
@@ -567,6 +571,16 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 /*AUTHOR PAGE*/
 #author-wrapper .content-area {
 	background-color: #fff;
+}
+
+#author-wrapper .avatar {
+	border-radius: 50%;
+}
+
+#author-wrapper h1 {
+	display: inline-block;
+	margin-left: 20px;
+	line-height: 40px;
 }
 
 /*AUTHOR SHORTCODE*/

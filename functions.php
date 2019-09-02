@@ -557,7 +557,7 @@ add_shortcode( 'onl-sites', 'onl_get_user_blogs');
  */
 function ole_forcelogin_bypass( $bypass ) {
 	global $post;
-  if ( $post->ID === 3 || $post->ID === 2 ) {
+  if ( $post->ID === 3 || $post->ID === 2 || is_home() || is_front_page()) {
     $bypass = true;
   }
   return $bypass;

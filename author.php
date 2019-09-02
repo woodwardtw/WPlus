@@ -36,11 +36,12 @@ $container = get_theme_mod( 'understrap_container_type' );
 					}
 					?>
 
-					<h1><?php echo esc_html__( '', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?></h1>
-
+					
 					<?php if ( ! empty( $curauth->ID ) ) : ?>
 						<?php echo get_avatar( $curauth->ID ); ?>
 					<?php endif; ?>
+					<h1><?php echo esc_html__( '', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?></h1>
+
 
 					<?php if ( ! empty( $curauth->user_url ) || ! empty( $curauth->user_description ) ) : ?>
 						<dl>
