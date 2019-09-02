@@ -59,14 +59,14 @@ $container = get_theme_mod( 'understrap_container_type' );
 						</dl>
 					<?php endif; ?>
 					<div class="profile-details onl-profile">
-						<?php echo 'Institution: ' . display_onl_profile_detail($curauth->ID, 'Institution');?>
-						<?php echo 'Role: ' . display_onl_profile_detail($curauth->ID, 'Role in ONL');?>
-						<?php echo 'PBL Group(s): ' . display_onl_profile_detail($curauth->ID, 'PBL Group');?>
+						<div><?php echo 'Institution: ' . display_onl_profile_detail($curauth->ID, 'Institution');?></div>
+						<div><?php echo 'Role: ' . display_onl_profile_detail($curauth->ID, 'Role in ONL');?></div>
+						<div><?php echo 'PBL Group(s): ' . display_onl_profile_detail($curauth->ID, 'PBL Group');?></div>
 					</div>
 					<div class="contact-details onl-profile">
-						<?php echo 'Email: ' . display_onl_profile_detail($curauth->ID, 'E-mail');?>
+						<div><?php echo 'Email: ' . display_onl_profile_detail($curauth->ID, 'E-mail');?></div>
 
-						<?php echo 'Twitter: ' . display_onl_profile_detail($curauth->ID, 'Twitter account');?>
+						<div><?php echo 'Twitter: ' . display_onl_profile_detail($curauth->ID, 'Twitter account');?></div>
 					</div>
 
 					<h2><?php echo esc_html( 'Recent activity by', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?>:</h2>

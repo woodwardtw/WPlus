@@ -511,7 +511,7 @@ function display_onl_profile_detail($user_id, $field) {
 	//make sure field name parallels extended profile piece exactly
     $field = xprofile_get_field_data( $field, $user_id);
     if ($field) {
-       return $field;
+       return  $field ;
     }
 }
 
