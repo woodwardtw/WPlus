@@ -507,11 +507,22 @@ add_action( 'rest_api_init', function () {
 //ONL BUDDYPRESS Extended profile additions
 
 function display_user_institution($user_id) {
-   
     $institution = xprofile_get_field_data( 'Institution', $user_id);
- 
     if ($institution) {
         echo 'Institution: ' . $institution;
     }
-     
+}
+
+function display_onl_role($user_id) {
+    $role = xprofile_get_field_data( 'Role in ONL', $user_id);
+    if ($role) {
+        echo 'Role: ' . $role;
+    }
+}
+
+function display_onl_group($user_id) {
+    $group = xprofile_get_field_data( 'PBL Group', $user_id);
+    if ($group) {
+        echo 'PBL Group: ' . $group;
+    }
 }

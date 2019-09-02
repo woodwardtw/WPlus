@@ -36,7 +36,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					}
 					?>
 
-					<h1><?php echo esc_html__( 'About:', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?></h1>
+					<h1><?php echo esc_html__( '', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?></h1>
 
 					<?php if ( ! empty( $curauth->ID ) ) : ?>
 						<?php echo get_avatar( $curauth->ID ); ?>
@@ -57,8 +57,10 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<?php endif; ?>
 						</dl>
 					<?php endif; ?>
-					<div class="institution">
+					<div class="profile-details">
 						<?php display_user_institution($curauth->ID);?>
+						<?php display_onl_role($curauth->ID);?>
+						<?php display_onl_group($curauth->ID);?>
 					</div>
 
 					<h2><?php echo esc_html( 'Posts by', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?>:</h2>
