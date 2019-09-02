@@ -564,11 +564,29 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 	margin-right: 10px;
 }
 
-/*AUTHOR*/
+/*AUTHOR PAGE*/
 #author-wrapper .content-area {
 	background-color: #fff;
 }
 
+/*AUTHOR SHORTCODE*/
+.author-holder {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.author-holder .single-author {
+	margin: 10px 15px;
+	text-align: center;
+}
+
+.author-holder .single-author img {
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
+	margin: 10px auto;
+	display: block;
+}
 
 /*Youtube video resizer*/
 

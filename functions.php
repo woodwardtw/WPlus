@@ -517,15 +517,35 @@ function display_onl_profile_detail($user_id, $field) {
 
 function display_onl_authors_summary(){
 	$users = get_users();
-	$html = '<div class="author-holder">';
+	$html = '<div class="author-holder">';	
 	foreach ($users as $user) 
 		{
-		   //echo $user->ID;
-		   $html .= '<div class="single-author"><h2>' . $user->display_name . '</h2>';
-		   $html .= '<img src="'.get_avatar_url($user->ID).'">';
-		   $html .= $user->description . '</div>';
+		   //echo $user->ID;http://192.168.33.10/wordpress/plus/author/ffake/
+		   $html .= '<a href="' . get_author_posts_url( $user->ID ) . '">';
+		   $html .= '<div class="single-author">';
+		   $html .= '<img src="'.get_avatar_url($user->ID).'" alt="Avatar.">';
+		   $html .= '<h2>' . $user->display_name . '</h2>';
+		   $html .= $user->description . '</div></a>';
 		}
 		return $html . '</div>';
 }
 
 add_shortcode( 'onl-authors', 'display_onl_authors_summary' );
+
+
+
+//exclude page for force login 
+/**
+ * Bypass Force Login to allow for exceptions.
+ *
+ * @param bool $bypass Whether to disable Force Login. Default false.
+ * @return bool
+ */
+function ole_forcelogin_bypass( $bypass ) {
+	global $post;
+  if ( $post->ID === 3 || $post->ID === 2 ) {
+    $bypass = true;
+  }
+  return $bypass;
+}
+add_filter( 'v_forcelogin_bypass', 'ole_forcelogin_bypass' );
