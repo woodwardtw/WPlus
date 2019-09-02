@@ -57,6 +57,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<?php endif; ?>
 						</dl>
 					<?php endif; ?>
+					<div class="institution">
+						<?php display_user_institution($curauth->ID);?>
+					</div>
 
 					<h2><?php echo esc_html( 'Posts by', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?>:</h2>
 

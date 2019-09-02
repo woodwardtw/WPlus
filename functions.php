@@ -502,3 +502,16 @@ add_action( 'rest_api_init', function () {
         ),
     ) );
 } );
+
+
+//ONL BUDDYPRESS Extended profile additions
+
+function display_user_institution($user_id) {
+   
+    $institution = xprofile_get_field_data( 'Institution', $user_id);
+ 
+    if ($institution) {
+        echo 'Institution: ' . $institution;
+    }
+     
+}
