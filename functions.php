@@ -532,7 +532,21 @@ function display_onl_authors_summary(){
 
 add_shortcode( 'onl-authors', 'display_onl_authors_summary' );
 
+//USER BLOGS SHORTCODE
 
+function onl_get_user_blogs(){
+	$user_id = get_current_user_id();
+	if(get_current_user_id()){
+		$user_blogs = get_blogs_of_user( $user_id );
+			echo '<h3>Your Groups</h3><ul>';
+			foreach ($user_blogs AS $user_blog) {
+			    echo '<li><a href="' . $user_blog->siteurl .'">'.$user_blog->blogname.'</a></li>';
+			}
+		echo '</ul>';
+	}
+}
+
+add_shortcode( 'onl-sites', 'onl_get_user_blogs');
 
 //exclude page for force login 
 /**
@@ -549,3 +563,4 @@ function ole_forcelogin_bypass( $bypass ) {
   return $bypass;
 }
 add_filter( 'v_forcelogin_bypass', 'ole_forcelogin_bypass' );
+
