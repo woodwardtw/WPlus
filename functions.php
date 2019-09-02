@@ -514,3 +514,18 @@ function display_onl_profile_detail($user_id, $field) {
        return $field;
     }
 }
+
+function display_onl_authors_summary(){
+	$users = get_users();
+	$html = '<div class="author-holder">';
+	foreach ($users as $user) 
+		{
+		   //echo $user->ID;
+		   $html .= '<div class="single-author"><h2>' . $user->display_name . '</h2>';
+		   $html .= '<img src="'.get_avatar_url($user->ID).'">';
+		   $html .= $user->description . '</div>';
+		}
+		return $html . '</div>';
+}
+
+add_shortcode( 'onl-authors', 'display_onl_authors_summary' );
