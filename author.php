@@ -57,10 +57,15 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<?php endif; ?>
 						</dl>
 					<?php endif; ?>
-					<div class="profile-details">
-						<?php display_user_institution($curauth->ID);?>
-						<?php display_onl_role($curauth->ID);?>
-						<?php display_onl_group($curauth->ID);?>
+					<div class="profile-details onl-profile">
+						<?php echo 'Institution: ' . display_onl_profile_detail($curauth->ID, 'Institution');?>
+						<?php echo 'Role: ' . display_onl_profile_detail($curauth->ID, 'Role in ONL');?>
+						<?php echo 'PBL Group(s): ' . display_onl_profile_detail($curauth->ID, 'PBL Group');?>
+					</div>
+					<div class="contact-details onl-profile">
+						<?php echo 'Email: ' . display_onl_profile_detail($curauth->ID, 'E-mail');?>
+
+						<?php echo 'Twitter: ' . display_onl_profile_detail($curauth->ID, 'Twitter account');?>
 					</div>
 
 					<h2><?php echo esc_html( 'Posts by', 'understrap' ) . ' ' . esc_html( $curauth->nickname ); ?>:</h2>
