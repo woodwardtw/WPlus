@@ -173,3 +173,16 @@ jQuery(document).ready(function() {
         return false;
     })
 })
+
+
+//editor block buttons
+jQuery(document).ready(function() {
+	let editorButtons = document.querySelectorAll('.editor-button')
+	editorButtons.forEach((button) => {
+	  button.addEventListener('click', () => {
+	    let post = button.getAttribute('data-post')
+	    jQuery('#edit-block-'+post).toggleClass( "show-me" )
+	    console.log('edit')
+	  });
+	});
+})

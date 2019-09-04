@@ -64,8 +64,9 @@ function the_front_posts(){
 				$html .= '<i class="fa fa-thumb-tack pinned" aria-label="Pinned post." title="This post is pinned."></i>';
 			}
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '" alt="author profile image.">';
-			$html .= '<div class="plus-author-name">' . $name .'</div>';
-			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . edit_it($post_id, $author_id) .'</div></div>';
+			$html .= '<div class="plus-author-name"><a href="'. get_author_posts_url($author_id) . '">' . $name .'</a></div>';
+			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . '<button class="fa fa-ellipsis-v editor-button" data-post="'.$post_id.'"></button></div><div class="edit-block" id="edit-block-'.$post_id.'">';
+			$html .=  edit_it($post_id, $author_id) . post_go_away($post_id) .'</div></div>';
 			if(get_the_title()){
 				$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
 			}
@@ -89,7 +90,7 @@ function the_front_posts(){
 function edit_it($post_id, $author_id){
 	if ($author_id === get_current_user_id() || current_user_can('administrator')){
 		$link = get_edit_post_link( $post_id );
-		return '<div class="edit-link"><a href="' . $link . '">edit</a></div>';
+		return '<a href="' . $link . '">edit</a>';
 	}
 }
 
@@ -547,6 +548,18 @@ function onl_get_user_blogs(){
 }
 
 add_shortcode( 'onl-sites', 'onl_get_user_blogs');
+
+
+//DELETE BLOG
+
+function post_go_away($post_id){
+	$url = get_bloginfo('url');
+	$html = '';
+	  if (current_user_can('edit_post', $post_id)){
+	  	$html .= '<a onclick="alert(\'Are you SURE you want to delete this post?\')" href="' .get_delete_post_link( $post_id ) .'">delete</a>';
+	  }
+	  return $html;
+}
 
 //exclude page for force login 
 /**
