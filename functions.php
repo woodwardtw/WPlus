@@ -70,7 +70,7 @@ function the_front_posts(){
 			if(get_the_title()){
 				$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
 			}
-			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo' ) );
+			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo img-' . $post_id ) );
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
 			$html .= '<div id="comment-post-' . $post_id . '">';
 			$html .= '<div class="comment-count">' . comment_count($post_id) . '</div>';
@@ -550,30 +550,61 @@ function onl_get_user_blogs(){
 add_shortcode( 'onl-sites', 'onl_get_user_blogs');
 
 
-//DELETE BLOG
+//DELETE BLOG POST BUTTON
 
 function post_go_away($post_id){
 	$url = get_bloginfo('url');
 	$html = '';
 	  if (current_user_can('edit_post', $post_id)){
-	  	$html .= '<a onclick="alert(\'Are you SURE you want to delete this post?\')" href="' .get_delete_post_link( $post_id ) .'">delete</a>';
+	  	$html .= '<a onclick="return confirm(\'Are you SURE you want to delete this post?\')" href="' .get_delete_post_link( $post_id ) .'">delete</a>';
 	  }
 	  return $html;
 }
 
-//exclude page for force login 
-/**
- * Bypass Force Login to allow for exceptions.
- *
- * @param bool $bypass Whether to disable Force Login. Default false.
- * @return bool
- */
-function ole_forcelogin_bypass( $bypass ) {
-	global $post;
-  if ( $post->ID === 3 || $post->ID === 2 || is_home() || is_front_page()) {
-    $bypass = true;
-  }
-  return $bypass;
+//SHORTCODE FOR showing wp json content 
+function neat_getpost_shortcode( $atts, $content = null ) {
+    extract(shortcode_atts( array(
+         'url' => '', //base url      
+         'display' => '', //defaults to list but grid with thumbnail featured images    
+         'number' => '', 
+         'featured' => '',
+         'type' => '',  
+         'custom' => '',
+    ), $atts));         
+
+    if($url){
+        $url = 'data-url="'.$url.'"';
+    }    
+    if($number){
+        $num = 'data-num="'.$number.'"';
+    } else {
+        $num = 'data-num="15"';
+    }
+     if($display){
+        $display = 'data-display="'.$display.'"';
+    } else {
+        $display = 'data-display="list"';
+    }
+     if($featured){
+        $display = 'data-img="'.$featured.'"';
+    } else {
+        $featured = 'data-img="false"';
+    }
+     if($type){
+        $type = 'data-type="'.$type.'"';
+    } else {
+        $type = 'data-type="post"';
+    }
+     if($custom){
+        $custom = 'data-custom="'.$custom.'"';
+    } 
+    $html = '<div class="container"><div id="neat-getposts" class="row" ' . $url . ' ' . $num . ' ' . $display .'></div></div>';
+
+    return  $html;
 }
-add_filter( 'v_forcelogin_bypass', 'ole_forcelogin_bypass' );
+
+add_shortcode( 'get-posts', 'neat_getpost_shortcode' );
+
+
+
 

@@ -186,3 +186,134 @@ jQuery(document).ready(function() {
 	  });
 	});
 })
+
+
+//fetch wp json shortcode 
+
+function checkResourcePostsDiv(){
+ 
+//see if we've got an anth-posts div before running all this stuff
+  try {
+  var element = document.getElementById('neat-getposts');
+  console.log(element);
+    return element;
+  }
+  catch(err) {
+      console.log(err.message);
+  }
+}
+
+  if (checkResourcePostsDiv()){ 
+  var element = document.getElementById('neat-getposts');
+  var num = element.dataset.num;
+  var url = sourceUrl();
+   
+    jQuery(document).ready(function() {
+      var def = new jQuery.Deferred();
+      jQuery.ajax({
+        url: url,
+        jsonp: "cb",
+        dataType: 'json',
+        success: function(data) {
+            console.log(data); //dumps the data to the console to check if the callback is made successfully.
+            jQuery.each(data, function(index, item) {
+              jQuery('#neat-getposts').append('<div class="alt-resource-item col-md-3">'+resourceBackgroundImg(item)+'<a href="'+item.link+'"><h2 class="alt-posts-title">'+item.title.rendered+'</h2></a><p class="alt-post-excerpt">'+item.excerpt.rendered+'</p></div>' );
+            }); //each          
+          } //success
+      }); //ajax  
+    }); //ready
+
+
+
+
+
+function sourceUrl(){
+   var element = document.getElementById('neat-getposts'); 
+      if(element.dataset.url != null){
+        var url = element.dataset.url;
+    } 
+   return  url;
+}  
+
+
+//sets the background image based on the featured image or returns a default image
+function resourceBackgroundImg (item) {
+    var element = document.getElementById('neat-getposts'); 
+      if(element.dataset.img == 'true'){
+      try {
+        var imgUrl = item._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url;
+        var alt = item._embedded['wp:featuredmedia'][0].alt_text;
+        //console.log(imgUrl);
+        return '<img class="alt-get-img" src="'+imgUrl+'" alt="'+alt+'">';
+      }
+    catch(err) {
+        return '<img class="alt-get-img" src="">';
+      }
+    }
+  }
+
+function resourceUrl(item){
+   return '<a href="' + item.meta.resource_url + '">';
+}    
+
+//chops up the date item a bit
+    function dateDisplay(item){
+      return item.date.substring(5,10);
+    }
+    
+
+    var $loading = jQuery('#loading').hide();
+      jQuery(document)
+        .ajaxStart(function () {
+          $loading.show();
+        })
+        .ajaxStop(function () {
+          $loading.hide();
+        });
+
+}
+
+
+//get the category restriction in data-cats or data-authors if either or both exists
+function getResourceRestrictions(){
+    var element = document.getElementById('anth-resource'); 
+    if(element.dataset.cats){
+      var cats = '&categories='+element.dataset.cats;
+    } else {
+      cats = "";
+    }
+    if(element.dataset.authors){
+      var authors = '&author='+element.dataset.authors;
+    }else {
+      authors = "";
+    }
+    return cats + authors;
+}  
+
+//remove double images when featured img matches first image in post body
+let featured = document.querySelectorAll('.wp-post-image')[0]
+let content = document.querySelectorAll('.entry-content')[0]
+let firstImg = content.querySelectorAll('img')[0]
+
+if (featured.src === firstImg.src){
+  //firstImg.classList.add('hidden') //for 
+  firstImg.remove()
+}
+
+//remove double for plus images
+if(document.querySelectorAll('.card')){
+	let cards = document.querySelectorAll('.card')
+	cards.forEach(function(card){
+		let cardFeatured = document.querySelectorAll('.plus-photo')[0]
+		console.log(cardFeatured.srcset.split(','))
+		let cardContent = document.querySelectorAll('.card-text')[0]
+		let cardFirstImg = cardContent.querySelectorAll('img')[0]
+		console.log(cardFirstImg.srcset.split(','))
+
+		if (cardFeatured.srcset.split(',')[3] === cardFirstImg.srcset.split(',')[3]){
+		  cardFirstImg.remove()
+		}
+
+	})
+
+}
