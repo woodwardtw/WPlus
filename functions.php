@@ -323,19 +323,30 @@ function _media_upload_auto_insert_js(){
 
 //FORM SUBMISSION
 
-function plus_post_creation($title, $body) {
-    // do something
+function plus_post_creation($title, $body, $my_cats) {
     $my_post = array(
 	  'post_title'    => wp_strip_all_tags( $title, true ), 
 	  'post_content'  => $body, 
 	  'post_status'   => 'publish',
 	  'post_author'   => get_current_user_id(),
+	  'post_category' => $my_cats
 	);
 	 
 	// Insert the post into the database
 	wp_insert_post( $my_post );
 }
 
+function get_cat_ids($cats){
+	$cat_ids = [];
+	if ($cats){
+		foreach ($cats as $cat ) {
+		    $cat_id = get_category_by_slug($cat)->term_id;
+		    array_push($cat_ids, $cat_id); 
+		}
+	}
+	//var_dump($cat_ids);
+	return $cat_ids;
+}
 
 
 function form_builder(){
@@ -369,6 +380,13 @@ function process_form_data() {
 		} else {
 			$body = ' ';
 		}
+		if(isset($_POST['postCategories'])){
+			$cats = $_POST['postCategories'];
+			$my_cats = get_cat_ids($cats);
+			$body = $body . print("<pre>".print_r($my_cats,true)."</pre>");
+		} else {
+			$cats = '';
+		}
 
 		if(isset($_SESSION['message']))
 		{
@@ -376,9 +394,9 @@ function process_form_data() {
 		    unset($_SESSION['message']);
 		}
 
-		plus_post_creation($title, $body);
-		//var_dump($_POST);
-		header('Location: ' . get_home_url()); //redirect to page to reload
+		plus_post_creation($title, $body, $my_cats);
+		var_dump($_POST);
+		//header('Location: ' . get_home_url()); //redirect to page to reload
 	}
 }
 
@@ -606,5 +624,42 @@ function neat_getpost_shortcode( $atts, $content = null ) {
 add_shortcode( 'get-posts', 'neat_getpost_shortcode' );
 
 
+//add image class to inserted images 
+function add_image_class($class){
+
+    $class .= ' additional-class';
+    return $class;
+}
+add_filter('get_image_tag_class','add_image_class');
 
 
+
+
+//WP API fix filtering from https://www.danielauener.com/wordpress-rest-api-extensions-for-going-headless-wp/
+//wp-json/wp/v2/posts?categories=3,4&and=true
+
+ /**
+   * Ads AND relation on rest category filter queries
+   */
+  add_action( 'pre_get_posts', 'wuxt_override_relation' );
+ 
+  function wuxt_override_relation( $query ) {
+ 
+    // bail early when not a rest request
+   if ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST ) {
+      return;
+   }
+ 
+    // check if we want to force an "and" relation
+    if ( ! isset( $_GET['and'] ) || !$_GET['and'] || 'false' === $_GET['and'] || !is_array( $tax_query = $query->get( 'tax_query' ) ) ) {
+      return;
+   }
+ 
+    foreach ( $tax_query as $index => $tax ) {
+      $tax_query[$index]['operator'] = 'AND';
+    }
+ 
+   $query->set( 'tax_query', $tax_query );
+ 
+  }
+ 

@@ -50,6 +50,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 				  <input type="text" name="plus_title" id="plus_title" aria-label="Title" placeholder="Title">
 				  <?php plus_post() ;?>
 				  <?php wp_nonce_field( 'process_form', 'wplus_nonce' ); ?>
+				  <div class="form-group">
+				  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#postCategories" aria-expanded="false" aria-controls="collapseExample">
+				    Categories
+				  </button>
+				    <select multiple class="form-control collapse" id="postCategories" name="postCategories[]">
+				      <option>helpline-support</option>
+				      <option>getting-started</option>
+				      <option>connecting-week</option>
+				      <option>topic-1-online-participation-digital-literacies</option>
+				      <option>5</option>
+				    </select>
+				  </div>
 				  <input type="submit" name="submit" value="Post" id="post-plus-button">				  
 				</form>
 				<button type="button" class="close" data-dismiss="modal" id="closer" aria-label="Close">Cancel</button>		       					
