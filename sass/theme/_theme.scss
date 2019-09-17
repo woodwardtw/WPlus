@@ -92,6 +92,11 @@ h1, h2, h3 {
 	overflow: hidden;
 }
 
+#subscribe-blog-blog_subscription-2, .jetpack_subscription_widget {
+	color: #676767;
+	padding-left: 8px;
+}
+
 .whats-new {
 	display: inline-block;
 	color: #424242;
@@ -741,6 +746,7 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 .searcher.active {
 	background-color: #db4437;
 }
+
 
 /*EDITOR BLOCK*/
 .editor-button {

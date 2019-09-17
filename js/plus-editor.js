@@ -327,12 +327,14 @@ if(document.querySelectorAll('.card')){
 if (document.querySelectorAll('#institute-search')) {
 	let buttons = document.querySelectorAll('.searcher')
 	buttons.forEach((button) => {
-	  button.addEventListener('click', () => {
-	  	 jQuery('.searcher').removeClass('active');
-	  	 jQuery('#'+button.id).toggleClass("active"); 
-	    if (button.id === 'all' ){
+	  button.addEventListener('click', () => {	  	 
+	    if (button.id === 'all' || jQuery('#'+button.id).hasClass('active') === true){
 	    	jQuery('.author-holder a').removeClass('hide');
+	    	jQuery('#'+button.id).toggleClass('active'); 
 	    } else {
+	    	jQuery('.searcher').not('#'+button.id).removeClass('active');
+	  	    jQuery('#'+button.id).toggleClass('active'); 
+	        jQuery('.author-holder a').removeClass('hide');
 	    	jQuery('.author-holder a').not('.'+button.id).toggleClass('hide');
 	    }
 	  });

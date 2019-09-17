@@ -36,11 +36,21 @@ foreach ( $understrap_includes as $file ) {
 }
 
 function the_front_posts(){
+	
+	if ( get_query_var('paged') ) {
+        $paged = get_query_var('paged'); 
+    } elseif ( get_query_var('page') ) { 
+        $paged = get_query_var('page'); 
+    } else { 
+        $paged = 1; 
+    }
+
 	$plus_args = array(
 		'post_type' => 'post',
 		'post_status' => 'publish',
 		'orderby' => 'date',
-		'posts_per_page' => 30,
+		'posts_per_page' => 5,
+		'paged' => $paged,
 	);
 
 	$plus_query = new WP_Query( $plus_args );
@@ -65,7 +75,7 @@ function the_front_posts(){
 			}
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '" alt="author profile image.">';
 			$html .= '<div class="plus-author-name"><a href="'. get_author_posts_url($author_id) . '">' . $name .'</a></div>';
-			$html .= '<div class="plus-date">' . get_the_date( 'F j, Y' ) . '<button class="fa fa-ellipsis-v editor-button" data-post="'.$post_id.'"></button></div><div class="edit-block" id="edit-block-'.$post_id.'">';
+			$html .= '<div class="plus-date">' . get_the_date( 'M j, Y' ) . '<button class="fa fa-ellipsis-v editor-button" data-post="'.$post_id.'"></button></div><div class="edit-block" id="edit-block-'.$post_id.'">';
 			$html .=  edit_it($post_id, $author_id) . post_go_away($post_id) .'</div></div>';
 			if(get_the_title()){
 				$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
@@ -78,14 +88,27 @@ function the_front_posts(){
 			$html .= wplus_rater($post_id);
 			$html .= '</div></div>';
 		}
-		echo $html;
-		echo '</div>';
+		echo $html; 
+
+		//from https://stackoverflow.com/questions/11430392/wordpress-pagination-in-a-shortcode
+		$big = 999999999; // need an unlikely integer
+		echo '</div><div class="row"><div class="col-md-12">'.paginate_links( array(
+		   'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		   'format' => '?paged=%#%',
+		   'current' => max( 1, $paged ),//watch out that this sticks with lines 40-46
+		   'total' => $plus_query->max_num_pages, // your custom query
+		   'prev_next' => true,
+ 		) ); 
+ 		echo '</div></div>';
+		
+		
 		wp_reset_postdata();
 	} else {
 		// no posts found
 	}
 
 }
+
 
 function edit_it($post_id, $author_id){
 	if ($author_id === get_current_user_id() || current_user_can('administrator')){
