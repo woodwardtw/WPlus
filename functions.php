@@ -323,7 +323,7 @@ function _media_upload_auto_insert_js(){
 
 //FORM SUBMISSION
 
-function plus_post_creation($title, $body, $my_cats) {
+function plus_post_creation($title, $body, $my_cats, $sticky) {
     $my_post = array(
 	  'post_title'    => wp_strip_all_tags( $title, true ), 
 	  'post_content'  => $body, 
@@ -333,7 +333,11 @@ function plus_post_creation($title, $body, $my_cats) {
 	);
 	 
 	// Insert the post into the database
-	wp_insert_post( $my_post );
+	$post_id = wp_insert_post( $my_post );
+	//make sticky if sticky on
+	if ($sticky === 'on'){
+		stick_post($post_id);
+	}
 }
 
 function get_cat_ids($cats){
@@ -383,22 +387,26 @@ function process_form_data() {
 		if(isset($_POST['postCategories'])){
 			$cats = $_POST['postCategories'];
 			$my_cats = get_cat_ids($cats);
-			$body = $body . print("<pre>".print_r($my_cats,true)."</pre>");
 		} else {
-			$cats = '';
+			$my_cats = '';
 		}
-
+		if(isset($_POST['sticky'])){
+			$sticky = $_POST['sticky'];
+		} else {
+			$sticky = 'off';
+		}
 		if(isset($_SESSION['message']))
 		{
 		    echo $_SESSION['message'];
 		    unset($_SESSION['message']);
 		}
 
-		plus_post_creation($title, $body, $my_cats);
-		var_dump($_POST);
-		//header('Location: ' . get_home_url()); //redirect to page to reload
+		plus_post_creation($title, $body, $my_cats, $sticky);
+		//var_dump($_POST);
+		header('Location: ' . get_home_url()); //redirect to page to reload
 	}
 }
+
 
 
 function menubar_user_icon(){
@@ -537,19 +545,35 @@ function display_onl_profile_detail($user_id, $field) {
 function display_onl_authors_summary(){
 	$users = get_users();
 	$html = '<div class="author-holder">';	
-	foreach ($users as $user) 
-		{
+	$active_locations = ['All'];// build list of active locations to use to make buttons
+	foreach ($users as $user) {
+		if (display_onl_profile_detail($user->ID, 'Institution')){
+			$institute = display_onl_profile_detail($user->ID, 'Institution');
+			array_push($active_locations, $institute);
+			$institute_clean = sanitize_title($institute);
+		} else {
+			$institute_clean = 'none';
+		}
 		   //echo $user->ID;http://192.168.33.10/wordpress/plus/author/ffake/
-		   $html .= '<a href="' . get_author_posts_url( $user->ID ) . '">';
+		   $html .= '<a class="all ' . $institute_clean . '" href="' . get_author_posts_url( $user->ID ) . '">';
 		   $html .= '<div class="single-author">';
 		   $html .= '<img src="'.get_avatar_url($user->ID).'" alt="Avatar.">';
 		   $html .= '<h2>' . $user->display_name . '</h2>';
-		   $html .= $user->description . '</div></a>';
+		   $html .= '</div></a>';
 		}
-		return $html . '</div>';
+		return  make_user_buttons($active_locations) . $html . '</div>';
 }
 
 add_shortcode( 'onl-authors', 'display_onl_authors_summary' );
+
+function make_user_buttons($locations){
+	$html = '<div id="institute-search">';
+	$unique_locations = array_unique($locations);
+	foreach ($unique_locations as $key => $location) {
+		$html .= '<button class="searcher" id="' . sanitize_title($location) . '">' . $location . '</button>';
+	}
+	return $html;
+}
 
 //USER BLOGS SHORTCODE
 

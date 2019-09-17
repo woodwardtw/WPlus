@@ -291,14 +291,18 @@ function getResourceRestrictions(){
 }  
 
 //remove double images when featured img matches first image in post body
-let featured = document.querySelectorAll('.wp-post-image')[0]
-let content = document.querySelectorAll('.entry-content')[0]
-let firstImg = content.querySelectorAll('img')[0]
+if (document.querySelectorAll('.wp-post-image')>0){
+	let featured = document.querySelectorAll('.wp-post-image')[0]
+	let content = document.querySelectorAll('.entry-content')[0]
+	let firstImg = content.querySelectorAll('img')[0]
 
-if (featured.src === firstImg.src){
-  //firstImg.classList.add('hidden') //for 
-  firstImg.remove()
+	if (featured.src === firstImg.src){
+	  //firstImg.classList.add('hidden') //for 
+	  firstImg.remove()
+	}
+
 }
+
 
 //remove double for plus images
 if(document.querySelectorAll('.card')){
@@ -316,4 +320,21 @@ if(document.querySelectorAll('.card')){
 
 	})
 
+}
+
+//do search institute buttons
+
+if (document.querySelectorAll('#institute-search')) {
+	let buttons = document.querySelectorAll('.searcher')
+	buttons.forEach((button) => {
+	  button.addEventListener('click', () => {
+	  	 jQuery('.searcher').removeClass('active');
+	  	 jQuery('#'+button.id).toggleClass("active"); 
+	    if (button.id === 'all' ){
+	    	jQuery('.author-holder a').removeClass('hide');
+	    } else {
+	    	jQuery('.author-holder a').not('.'+button.id).toggleClass('hide');
+	    }
+	  });
+	});
 }
