@@ -49,7 +49,7 @@ function the_front_posts(){
 		'post_type' => 'post',
 		'post_status' => 'publish',
 		'orderby' => 'date',
-		'posts_per_page' => 5,
+		'posts_per_page' => 50,
 		'paged' => $paged,
 	);
 
@@ -92,7 +92,7 @@ function the_front_posts(){
 
 		//from https://stackoverflow.com/questions/11430392/wordpress-pagination-in-a-shortcode
 		$big = 999999999; // need an unlikely integer
-		echo '</div><div class="row"><div class="col-md-12">'.paginate_links( array(
+		echo '</div><div class="row"><div class="col-md-12 d-flex justify-content-center">'.paginate_links( array(
 		   'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 		   'format' => '?paged=%#%',
 		   'current' => max( 1, $paged ),//watch out that this sticks with lines 40-46
@@ -590,12 +590,14 @@ function display_onl_authors_summary(){
 add_shortcode( 'onl-authors', 'display_onl_authors_summary' );
 
 function make_user_buttons($locations){
-	$html = '<div id="institute-search">';
+	$html = '<button class="btn btn-onl" type="button" data-toggle="collapse" data-target="#author-search" aria-expanded="false" aria-controls="collapseExample">
+    Filter by Institution
+  </button><div class="collapse" id="author-search"><div id="institute-search">';
 	$unique_locations = array_unique($locations);
 	foreach ($unique_locations as $key => $location) {
 		$html .= '<button class="searcher" id="' . sanitize_title($location) . '">' . $location . '</button>';
 	}
-	return $html;
+	return $html . '</div></div>';
 }
 
 //USER BLOGS SHORTCODE

@@ -45,6 +45,24 @@ h1, h2, h3 {
     color: #424242;
 }
 
+.page-numbers {
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    transition: all .3s;
+ }
+
+ .page-numbers:hover {
+ 	background-color: #fff;
+ }
+
+.next {
+	width: 100px;
+}
+
 /*red background color fade on load for sticky posts*/
 // .card.sticky {
 // 	 animation: colorchange 3s; /* animation-name followed by duration in seconds*/
@@ -686,10 +704,11 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 .author-holder {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .author-holder .single-author {
-	margin: 10px 15px;
+	margin: 10px 10px;
 	text-align: center;
 	border-radius: 0;
 	padding-top: 20px;
@@ -747,6 +766,15 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 	background-color: #db4437;
 }
 
+.btn-onl {
+	margin-left: 15px;
+	border: 1px solid;
+	border-radius: 0;	
+}
+
+.btn-onl:hover{
+	background-color: #efefef;
+}
 
 /*EDITOR BLOCK*/
 .editor-button {
