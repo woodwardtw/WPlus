@@ -149,7 +149,6 @@ jQuery( document ).ready(function() {
 jQuery(document).ready(function() {
  
     jQuery(".like-button").click(function(){
-     	console.log(jQuery(this));
         heart = jQuery(this);
      
         // Retrieve post ID from data attribute
@@ -167,6 +166,24 @@ jQuery(document).ready(function() {
                     heart.addClass("voted");
                     heart.siblings(".count").text(count);
                 }
+            }
+        });
+         
+        return false;
+    })
+    jQuery(".pinned").click(function(){
+        pin = jQuery(this);
+        console.log('pinned');
+     
+        // Retrieve post ID from data attribute
+        post_id = pin.data("post_id");
+         
+        // Ajax call
+        jQuery.ajax({
+            type: "post",
+            url: ajax_var.url,
+            data: "action=unstick_post&nonce="+ajax_var.nonce+"&unstick_post=&post_id="+post_id,
+            success: function(){               
             }
         });
          

@@ -71,7 +71,7 @@ function the_front_posts(){
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
 			$html .= '<div class="card' . sticky_true($post_id) . '">';
 			if(sticky_true($post_id) === ' sticky '){
-				$html .= '<i class="fa fa-thumb-tack pinned" aria-label="Pinned post." title="This post is pinned."></i>';
+				$html .= '<i class="fa fa-thumb-tack pinned" aria-label="Pinned post." title="This post is pinned." data-post_id="' . $post_id .'"></i>';
 			}
 			$html .= '<div class="plus-author"><img class="plus-author-photo" src="'. $author_img . '" alt="author profile image.">';
 			$html .= '<div class="plus-author-name"><a href="'. get_author_posts_url($author_id) . '">' . $name .'</a></div>';
@@ -211,6 +211,28 @@ function hasAlreadyVoted($post_id)
      
     return false;
 }
+
+//UNSTICK POST
+add_action('wp_ajax_unstick_post', 'wplus_unstick_post');
+
+function wplus_unstick_post()
+{
+    // Check for nonce security
+    $nonce = $_POST['nonce'];
+  
+    if ( ! wp_verify_nonce( $nonce, 'ajax-nonce' ) )
+        die ( 'Busted!');
+     
+    if(isset($_POST['unstick_post']))
+    {
+        // Retrieve user IP address
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $post_id = $_POST['post_id'];
+        unstick_post($post_id);
+    }
+    exit;
+}
+
 
 
 /*
