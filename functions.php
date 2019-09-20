@@ -213,7 +213,9 @@ function hasAlreadyVoted($post_id)
 }
 
 //UNSTICK POST
-add_action('wp_ajax_unstick_post', 'wplus_unstick_post');
+if (current_user_can('edit_others_posts')) {
+	add_action('wp_ajax_unstick_post', 'wplus_unstick_post');
+}
 
 function wplus_unstick_post()
 {

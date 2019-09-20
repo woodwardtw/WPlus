@@ -173,7 +173,6 @@ jQuery(document).ready(function() {
     })
     jQuery(".pinned").click(function(){
         pin = jQuery(this);
-        console.log('pinned');
      
         // Retrieve post ID from data attribute
         post_id = pin.data("post_id");
@@ -183,12 +182,19 @@ jQuery(document).ready(function() {
             type: "post",
             url: ajax_var.url,
             data: "action=unstick_post&nonce="+ajax_var.nonce+"&unstick_post=&post_id="+post_id,
-            success: function(){               
+            success: function(response) {
+              console.log(response)
+            if(response.type == "success") {
+               console.log('unpinned')
+               pin.clasList = ''
             }
-        });
-         
-        return false;
-    })
+            else {
+            }
+         }
+      })   
+
+   })
+
 })
 
 
@@ -325,16 +331,20 @@ if (document.querySelectorAll('.wp-post-image')>0){
 if(document.querySelectorAll('.card')){
 	let cards = document.querySelectorAll('.card')
 	cards.forEach(function(card){
-		let cardFeatured = document.querySelectorAll('.plus-photo')[0]
-		console.log(cardFeatured.srcset.split(','))
-		let cardContent = document.querySelectorAll('.card-text')[0]
-		let cardFirstImg = cardContent.querySelectorAll('img')[0]
-		console.log(cardFirstImg.srcset.split(','))
-
-		if (cardFeatured.srcset.split(',')[3] === cardFirstImg.srcset.split(',')[3]){
-		  cardFirstImg.remove()
-		}
-
+    if (card.querySelectorAll('.plus-photo')[0]){
+	   	let cardFeatured = card.querySelectorAll('.plus-photo')[0]
+      console.log(cardFeatured.srcset.split(','))
+      if(card.querySelectorAll('.card-text')[0]){
+        let cardContent = card.querySelectorAll('.card-text')[0]
+        if(cardContent.querySelectorAll('img')[0]){
+          let cardFirstImg = cardContent.querySelectorAll('img')[0]
+            console.log(cardFirstImg.srcset.split(','))
+            if (cardFeatured.srcset.split(',')[3] === cardFirstImg.srcset.split(',')[3]){
+              cardFirstImg.remove()
+            }
+        }
+      }
+    }        
 	})
 
 }
