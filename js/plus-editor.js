@@ -8,7 +8,7 @@ jQuery('#plus-post').on('shown.bs.modal', function () {
 })  
 
 jQuery('#plus-post').on('hide.bs.modal', function () {
-    tinyMCE.get('mypluspost').setContent('')//cleans out editor if canceled
+    tinyMCE.get('mypluspost').setContent('Write your post here . . . ')//cleans out editor if canceled
     jQuery('.writing-circle').animate({
 	    opacity: 1,
 	    height: 60,
