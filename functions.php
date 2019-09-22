@@ -325,7 +325,7 @@ function opengraph_tinymce_checker($init) {
 
 //make tinymce settings
 function plus_post(){
-	$content = '';
+	$content = 'Write your post here . . . ';
     $settings =   array(
             'wpautop' => true,
             'editor_height' => '400',
