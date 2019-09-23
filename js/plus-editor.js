@@ -3,8 +3,12 @@ jQuery('#plus-post').on('shown.bs.modal', function () {
     jQuery('#plus_title').focus();   
     tinymce.get('mypluspost').on('focus', function(e) {
       console.log('focus');
-      tinyMCE.get('mypluspost').setContent('')
-  })  
+      tinyMCE.get('mypluspost').setContent('')      
+  })
+    tinymce.get('mypluspost').on('focusout', function(e) {
+      console.log('left');
+      //tinyMCE.get('mypluspost').setContent('')      
+  })
 })  
 
 jQuery('#plus-post').on('hide.bs.modal', function () {
@@ -179,23 +183,19 @@ jQuery(document).ready(function() {
      
         // Retrieve post ID from data attribute
         post_id = pin.data("post_id");
-         
+        let result = confirm("Press OK to unpin this post.");
+        if (result == true) { 
         // Ajax call
-        jQuery.ajax({
-            type: "post",
-            url: ajax_var.url,
-            data: "action=unstick_post&nonce="+ajax_var.nonce+"&unstick_post=&post_id="+post_id,
-            success: function(response) {
-              console.log(response)
-            if(response.type == "success") {
-               console.log('unpinned')
-               pin.clasList = ''
-            }
-            else {
-            }
-         }
-      })   
-
+          jQuery.ajax({
+              type: "post",
+              url: ajax_var.url,
+              data: "action=unstick_post&nonce="+ajax_var.nonce+"&unstick_post=&post_id="+post_id,
+              success: function(response) {
+               document.getElementById('pin-'+post_id).classList = 'hidden'
+               console.log(post_id)
+           }
+        })   
+      }
    })
 
 })
