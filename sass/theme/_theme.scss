@@ -806,6 +806,53 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 }
 
 
+/*home page widget*/
+
+.home-top-widget {
+	margin: 0 0 15px 0;
+}
+
+.home-top-widget ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.home-top-widget li {
+	display: inline-block;
+	margin-right: 8px;
+	border: 1px solid;
+}
+
+.home-top-widget li a {
+	display: block;
+	height: auto;
+	width: 100%;
+	padding: 5px 10px;
+}
+
+/*JETPACK NONSENS*/
+#gplus #subscribe_blog, #gplus #subscribe-blog-label {
+	display: none !important;
+	background-color: red;
+}
+
+#gplus #subscribe-label {
+	font-size: .8em;
+	color: #656464;
+}
+
+#gplus .comment-subscription-form {
+	padding-bottom: 0;
+}
+
+#gplus .comment-subscription-form:nth-of-type(2) {
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+
 /*Youtube video resizer*/
 
 .video-responsive{

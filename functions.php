@@ -736,3 +736,31 @@ add_filter('get_image_tag_class','add_image_class');
  
   }
  
+
+ if ( function_exists('register_sidebar') )
+  register_sidebar(array(
+    'name' => 'Home Top',
+    'before_widget' => '<div class="home-top-widget">',
+    'after_widget' => '</div>',
+    'before_title' => '<h2>',
+    'after_title' => '</h2>',
+    'id' => 'home-widg'
+  )
+);
+
+
+//MENU SHORTCODE
+
+function wplus_menu_shortcode($atts){
+	$a = shortcode_atts( array(
+		'name' => '',
+	), $atts );	
+
+	$menu = wp_nav_menu( array(
+    'menu'   => $a['name'],
+    'echo'   => false,
+	) );
+	return $menu;
+}
+
+add_shortcode( 'menu-fetch', 'wplus_menu_shortcode' );

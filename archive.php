@@ -37,6 +37,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					</header><!-- .page-header -->
 
 					<?php /* Start the Loop */ ?>
+					<div class="card-columns plus" id="gplus">
 					<?php while ( have_posts() ) : the_post(); ?>
 
 						<?php
@@ -46,17 +47,17 @@ $container = get_theme_mod( 'understrap_container_type' );
 						 * If you want to override this in a child theme, then include a file
 						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 						 */
-						get_template_part( 'loop-templates/content', get_post_format() );
+						get_template_part( 'loop-templates/content-plus', get_post_format() );
 						?>
 
 					<?php endwhile; ?>
 
 				<?php else : ?>
 
-					<?php get_template_part( 'loop-templates/content', 'none' ); ?>
+					<?php get_template_part( 'loop-templates/content-plus', 'none' ); ?>
 
 				<?php endif; ?>
-
+				</div>
 			</main><!-- #main -->
 
 			<!-- The pagination component -->

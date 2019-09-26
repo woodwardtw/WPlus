@@ -28,7 +28,8 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		wp_enqueue_script( 'plus-script', get_template_directory_uri() . '/js/plus-editor.js', array(), '1.0', true );
 		wp_localize_script('plus-script', 'ajax_var', array(
 		    'url' => admin_url('admin-ajax.php'),
-		    'nonce' => wp_create_nonce('ajax-nonce')
+		    'nonce' => wp_create_nonce('ajax-nonce'),
+		    'siteurl' => get_option('siteurl')
 		));
 
 		wp_enqueue_script( 'ajax-comments', get_template_directory_uri() . '/js/ajax-comments.js', array('jquery'), '1.0', true );

@@ -23,7 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="entry-content">
 
 		<?php the_content(); ?>
-		
+		<!--widget-->
+		<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Home Top") ) : ?>
+		<?php endif;?>
 		<?php the_front_posts();?><!--posts loop-->
 
 		<?php

@@ -69,7 +69,7 @@ function showCommentSubmit(){
 
 function build_comments_api(id){
 	//wp-json/wp/v2/comments?post=5198	
-	let url = 'wp-json/wp/v2/comments?post=' + id;
+	let url = ajax_var.siteurl + '/wp-json/wp/v2/comments?post=' + id;
 
 	jQuery('#show-'+id).animate({
 			    opacity: 0,
@@ -79,26 +79,20 @@ function build_comments_api(id){
 			    jQuery('#show-'+id).remove();
 			  });   
 
-	  fetch(url)
-	    .then(function(response) {
-	      return response.json();
-	    })
-	    .then(function(myJson) {
-	      var data = JSON.stringify(myJson);
-	      
-	      var comments = JSON.parse(data);
-	      console.log(comments);
-	       comments.forEach(function(comment){
-	      	let commentBody = comment.content.rendered;
-	      	let commentAuthor = comment.author_name;
-	      	if (comment.comment_author_img){
-	      		var author_img = comment.comment_author_img;
-	      	} else {
-	      		var author_img = comment.author_avatar_urls[48]
-	      	}
-	      	jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>').show('normal');
-	      })
-	    });
+	  jQuery.get( url, function( data ) {
+         jQuery( '#comment-home-'+id )
+            data.forEach(function(comment){
+            let commentBody = comment.content.rendered;
+            let commentAuthor = comment.author_name;
+            if (comment.comment_author_img){
+              var author_img = comment.comment_author_img;
+            } else {
+              var author_img = comment.author_avatar_urls[48]
+            }
+            jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>').show('normal');
+          })
+        }, "json" );
+	
 }
 
 
@@ -218,7 +212,6 @@ jQuery(document).ready(function() {
 
 function checkResourcePostsDiv(){
  
-//see if we've got an anth-posts div before running all this stuff
   try {
   var element = document.getElementById('neat-getposts');
   console.log(element);
