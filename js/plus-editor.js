@@ -23,7 +23,7 @@ jQuery('#plus-post').on('hide.bs.modal', function () {
 }) 
 
  
-
+//open editor via red button
 jQuery( "#red-writing-button, #write" ).click(function() {
  jQuery('.writing-circle').animate({
 	    opacity: 0,
@@ -202,7 +202,6 @@ jQuery(document).ready(function() {
 	  button.addEventListener('click', () => {
 	    let post = button.getAttribute('data-post')
 	    jQuery('#edit-block-'+post).toggleClass( "show-me" )
-	    console.log('edit')
 	  });
 	});
 })
@@ -214,11 +213,9 @@ function checkResourcePostsDiv(){
  
   try {
   var element = document.getElementById('neat-getposts');
-  console.log(element);
     return element;
   }
   catch(err) {
-      console.log(err.message);
   }
 }
 

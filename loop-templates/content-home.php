@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				      <option value="helpline-support">Helpline / Support</option>
 				      <option value="getting-started">Getting Started</option>
 				      <option value="connecting-week">Connecting Week</option>
-				      <option value="topic-1-online-participation-digital-literacie">Topic 1: online participation digital literacies</option>
+				      <option value="topic-1-online-participation-digital-literacies">Topic 1: online participation digital literacies</option>
 				      <option value="topic-2-open-learning-sharing-and-openness">Topic 2: open learning sharing and openness</option>
 				      <option value="topic-3-learning-in-communities-networked-collaborative-learning">Topic 3: learning in communities networked collaborative learning</option>
 				      <option value="topic-4-design-for-online-and-blended-learning">Topic 4: design for online and blended learning</option>
