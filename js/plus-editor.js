@@ -1,9 +1,11 @@
 //select title on launch of modal
 jQuery('#plus-post').on('shown.bs.modal', function () {
     jQuery('#plus_title').focus();   
+  //$('input[class=password]').one('focus', function(){...
     tinymce.get('mypluspost').on('focus', function(e) {
-      console.log('focus');
-      tinyMCE.get('mypluspost').setContent('')      
+      if (tinyMCE.get('mypluspost').getContent({format: 'text'}) == "Write your post here . . ."){
+        tinyMCE.get('mypluspost').setContent('')          
+      }
   })
     tinymce.get('mypluspost').on('focusout', function(e) {
       console.log('left');

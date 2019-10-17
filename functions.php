@@ -433,8 +433,8 @@ function process_form_data() {
 		}
 
 		plus_post_creation($title, $body, $my_cats, $sticky);
-		var_dump($_POST);
-		//header('Location: ' . get_home_url()); //redirect to page to reload
+		//var_dump($_POST);
+		header('Location: ' . get_home_url()); //redirect to page to reload
 	}
 }
 

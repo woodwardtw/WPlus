@@ -201,9 +201,14 @@ h1, h2, h3 {
     line-height: 20px;
 }
 
-.card h1, .card h2, .card h3, .card h4, .card h5, .card p {
+.card h1, .card h2, .card h3, .card h4, .card h5 {
 	    padding: 10px 20px;    
 }
+
+ .card p {
+ 	 padding: 0 20px 15px 20px;
+ 	 margin-bottom: 0;
+ }
 
 .card p img {
 	padding: 10px 0;
@@ -267,7 +272,7 @@ h1, h2, h3 {
 .plus-comment-box {
 	font-size: .8em;
 	color: rgba(0,0,0,.6);
-	margin-top: 15px;
+	margin-top: 5px;
 }
 
 .comment-count {
@@ -536,7 +541,11 @@ input:checked + .sticky-slider:before {
 comments
 */
 .comment-respond {
-	padding: 20px;
+	padding: 5px 20px 20px 20px;
+}
+
+.comment-reply-title {
+	display: none;
 }
 
 .comment-form-comment textarea {
