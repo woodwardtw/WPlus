@@ -291,6 +291,23 @@ function plus_author_name(){
 	echo get_the_author_meta('display_name');
 }
 
+//FRONTEND wp_editor 
+// add new buttons
+//add_filter( 'mce_buttons', 'myplugin_register_buttons' );
+
+// function myplugin_register_buttons( $buttons ) {
+//    array_push( $buttons, 'separator', 'tinymceEmoji' );
+//    return $buttons;
+// }
+ 
+// Load the TinyMCE plugin : editor_plugin.js (wp2.5)
+//emoji sort of works from https://www.npmjs.com/package/tinymce-emoji
+//add_filter( 'mce_external_plugins', 'myplugin_register_tinymce_javascript' );
+
+// function myplugin_register_tinymce_javascript( $plugin_array ) {
+//    $plugin_array['tinymceEmoji'] = get_template_directory_uri().'/js/tinymce/tinymce-emoji/plugin.min.js';
+//    return $plugin_array;
+// }
 
 //getting the tinymce editor stuff
 function tinymce_init() {
@@ -374,12 +391,11 @@ function get_cat_ids($cats){
 	$cat_ids = [];
 	if ($cats){
 		foreach ($cats as $cat ) {
-			if ( get_category_by_slug($cat)){
-		    	$cat_id = get_category_by_slug($cat)->term_id;
-		    	array_push($cat_ids, $cat_id); 
-			}
+		    $cat_id = get_category_by_slug($cat)->term_id;
+		    array_push($cat_ids, $cat_id); 
 		}
 	}
+	//var_dump($cat_ids);
 	return $cat_ids;
 }
 

@@ -8,7 +8,6 @@ jQuery('#plus-post').on('shown.bs.modal', function () {
       }
   })
     tinymce.get('mypluspost').on('focusout', function(e) {
-      console.log('left');
       //tinyMCE.get('mypluspost').setContent('')      
   })
 })  
@@ -86,12 +85,13 @@ function build_comments_api(id){
             data.forEach(function(comment){
             let commentBody = comment.content.rendered;
             let commentAuthor = comment.author_name;
+            let commentDate = comment.date.substring(0,10);
             if (comment.comment_author_img){
               var author_img = comment.comment_author_img;
             } else {
               var author_img = comment.author_avatar_urls[48]
             }
-            jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div>'+comment.content.rendered+'</div>').show('normal');
+            jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div><div class="comment-date">'+commentDate+'</div>'+comment.content.rendered+'</div>').show('normal');
           })
         }, "json" );
 	
@@ -113,7 +113,7 @@ jQuery(document).on('focusin', function(e) {
 
 
 //full size youtube video stuff
-var videos = document.querySelectorAll('iframe[src^="https://www.youtube.com/"], iframe[src^="https://player.vimeo.com"], iframe[src^="https://www.youtube-nocookie.com/"], iframe[src^="https://www.nytimes.com/"]'); //get video iframes for regular youtube, privacy+ youtube, and vimeo
+var videos = document.querySelectorAll('iframe[src^="https://www.opennetworkedlearning.se/"]', 'iframe[src^="https://www.youtube.com/"], iframe[src^="https://player.vimeo.com"], iframe[src^="https://www.youtube-nocookie.com/"], iframe[src^="https://www.nytimes.com/"]'); //get video iframes for regular youtube, privacy+ youtube, and vimeo
 
 
 videos.forEach(function(video) {
