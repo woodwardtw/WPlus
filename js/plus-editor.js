@@ -233,7 +233,7 @@ function checkResourcePostsDiv(){
         jsonp: "cb",
         dataType: 'json',
         success: function(data) {
-            console.log(data); //dumps the data to the console to check if the callback is made successfully.
+           // console.log(data); //dumps the data to the console to check if the callback is made successfully.
             jQuery.each(data, function(index, item) {
               jQuery('#neat-getposts').append('<div class="alt-resource-item col-md-3">'+resourceBackgroundImg(item)+'<a href="'+item.link+'"><h2 class="alt-posts-title">'+item.title.rendered+'</h2></a><p class="alt-post-excerpt">'+item.excerpt.rendered+'</p></div>' );
             }); //each          
@@ -362,3 +362,23 @@ if (document.querySelectorAll('#institute-search')) {
 	  });
 	});
 }
+
+//do search author buttons
+
+// if (document.querySelectorAll('#author-search')) {
+//   let buttons = document.querySelectorAll('.searcher')
+//   buttons.forEach((button) => {
+//     button.addEventListener('click', () => {       
+//       if (button.id === 'all' || jQuery('#'+button.id).hasClass('active') === true){
+//         jQuery('.author-holder a').removeClass('hide');
+//         jQuery('#'+button.id).toggleClass('active'); 
+//       } else {
+//         jQuery('.searcher').not('#'+button.id).removeClass('active');
+//           jQuery('#'+button.id).toggleClass('active'); 
+//           console.log(jQuery('#'+button.id));
+//           jQuery('.author-holder a').removeClass('hide');
+//         jQuery('.author-holder a').not('.'+button.id).toggleClass('hide');
+//       }
+//     });
+//   });
+// }

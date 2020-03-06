@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 			if(e.keyCode == 13){ //just on return do we check
 	            // Get the editor content (html)
 	            get_ed_content = tinymce.activeEditor.getContent();
+
 	            // Do stuff here... (run do_stuff_here() function)            
 	            openGraphMatch(get_ed_content);
 	        }
@@ -49,13 +50,14 @@ jQuery(document).ready(function($) {
 
 
 function processOgText(content){
+	console.log(content);
 	let getResults = getUrls(content)
 
 	function getUrls(value) {
 	  let regEx = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
-	   let urls = value.match(regEx)
-	  console.log(urls);
-	  return urls;
+	  let urls = value.match(regEx)
+	  var unique = new Set(urls);
+	  return unique;
 	}
 
 
@@ -100,7 +102,7 @@ function processOgText(content){
 	    }
 	    let text = '<div class="furl-content"><img class="furl-img" src="'+img+'"><h2 class="furl-name"><a href="'+theLink+'">' + theName + '</a></h2>';
 	    //text += '<div class="furl-title"><p><a href="'+theLink+'">' + title + '</a></p></div>';
-	    text += '<p class="furl-description"><a href="'+theLink+'">'+description+'</a></p></div>';
+	    text += '<p class="furl-description"><a class="done" href="'+theLink+'">'+description+'</a></p></div>';
 	    let currentText = tinymce.activeEditor.getContent();
 	    let urlRemoved = currentText.replace(theLink,'')
 		tinymce.activeEditor.setContent(urlRemoved + text, {format: 'raw'})

@@ -750,7 +750,7 @@ add_filter('get_image_tag_class','add_image_class');
 
 
 //MENU SHORTCODE
-
+//ties to menu for example    [menu-fetch name="cats"]
 function wplus_menu_shortcode($atts){
 	$a = shortcode_atts( array(
 		'name' => '',
@@ -762,5 +762,7 @@ function wplus_menu_shortcode($atts){
 	) );
 	return $menu;
 }
+
+add_shortcode( 'menu-fetch', 'wplus_menu_shortcode' );
 
 add_shortcode( 'menu-fetch', 'wplus_menu_shortcode' );

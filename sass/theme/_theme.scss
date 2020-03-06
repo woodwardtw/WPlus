@@ -401,7 +401,7 @@ h1, h2, h3 {
 }
 //single post 
 #single-wrapper .site-main, #page-wrapper .site-main {
-	max-width: 600px;
+	max-width: 90%;
 	display: block;
 	margin: 0 auto;
 	background-color: #fff;
@@ -587,6 +587,7 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 	padding-left: 20px;
 }
 
+
 /*AUTHOR PROFILE PAGE*/
 #author-wrapper #main {
 	background-color: #fff;
@@ -653,7 +654,8 @@ button.searcher:hover{
 .author-holder .single-author {
 	display: inline-block;
 	text-align: center;
-	margin: 15px 20px;	
+	margin: 15px 10px;
+	width: 160px;	
 }
 
 .author-holder .single-author:hover img {
@@ -757,3 +759,6 @@ p .video-responsive {
    } 
 }
 
+.hide {
+	display: none;	
+}
