@@ -42,12 +42,13 @@ SHOW EXISTING COMMENTS LAND
 */
 
 
-jQuery('#primary').isotope({
-  itemSelector: '.foo',
-  masonry: {
-    columnWidth: 200
-  }
+jQuery('.plus').isotope({
+  itemSelector: '.card-holder',
+  percentPosition: true,
+  layoutMode: 'masonry',
+  gutter: 10,
 });
+
 
 jQuery( document ).ready(function() {
 	console.log('ready');
