@@ -61,15 +61,17 @@ function the_front_posts(){
 	if ( $plus_query->have_posts() ) {
 		echo '<div class="card-columns plus" id="gplus">';
 		if(is_user_logged_in()){
-		$html .= '<div class="card"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '" alt="Author profile photo."><div class="whats-new"><button id="write"  data-toggle="modal" data-target="#plus-post">What\'s new with you?</button></div></div></div>';
+		$html .= '<div class="card" data-order="1"><div class="plus-author"><img class="plus-author-photo" src="'. $current_img . '" alt="Author profile photo."><div class="whats-new"><button id="write"  data-toggle="modal" data-target="#plus-post">What\'s new with you?</button></div></div></div>';
 		}
+		$count = 1;
 		while ( $plus_query->have_posts() ) {
+			$count++;
 			$plus_query->the_post();
 			$post_id = get_the_id();
 			$name = get_the_author_meta('display_name');					
 			$author_id = get_the_author_meta('ID');
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));
-			$html .= '<div class="card' . sticky_true($post_id) . '">';
+			$html .= '<div data-sort="'.$count.'" class="card' . sticky_true($post_id) . '">';
 			if(sticky_true($post_id) === ' sticky '){
 				$html .= '<i class="fa fa-thumb-tack pinned" aria-label="Pinned post." title="This post is pinned." id="pin-' . $post_id . '" data-post_id="' . $post_id .'"></i>';
 			}

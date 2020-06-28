@@ -171,9 +171,17 @@ h1, h2, h3 {
     display: block;
 }
 
+.card {
+	overflow: hidden;
+}
+
 .card .card-text {
 	font-size: 14px;
     line-height: 20px;
+}
+
+.card .card-text iframe {
+	max-width: 100% !important;
 }
 
 .card-text a {
@@ -224,6 +232,12 @@ h1, h2, h3 {
 	display: inline-block;
 	float: right;
 	vertical-align: top;
+}
+
+.plus-date button {
+	border: 0;
+	margin-left: 5px;
+	background-color: #fff;
 }
 
 

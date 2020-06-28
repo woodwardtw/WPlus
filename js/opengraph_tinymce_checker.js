@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 
 function processOgText(content){
 	console.log(content);
-	let getResults = getUrls(content)
+	let getResults = getUrls(content)[0]
 
 	function getUrls(value) {
 	  let regEx = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;

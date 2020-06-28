@@ -41,6 +41,14 @@ SHOW EXISTING COMMENTS LAND
 **
 */
 
+
+jQuery('#primary').isotope({
+  itemSelector: '.foo',
+  masonry: {
+    columnWidth: 200
+  }
+});
+
 jQuery( document ).ready(function() {
 	console.log('ready');
 		activate_see_comments_buttons();
