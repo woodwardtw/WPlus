@@ -26,6 +26,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!--widget-->
 		<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Home Top") ) : ?>
 		<?php endif;?>
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sorter" aria-expanded="false" aria-controls="collapseExample">
+		    Sort by Category
+		</button>
+		<div class="collapse" id="sorter">
+		  <div class="card card-body">
+				<?php echo do_shortcode('[menu-fetch name="cats"]');?>
+			</div>
+		</div>
+
 		<?php the_front_posts();?><!--posts loop-->
 
 		<?php

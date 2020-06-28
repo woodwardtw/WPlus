@@ -766,5 +766,3 @@ function wplus_menu_shortcode($atts){
 }
 
 add_shortcode( 'menu-fetch', 'wplus_menu_shortcode' );
-
-add_shortcode( 'menu-fetch', 'wplus_menu_shortcode' );
