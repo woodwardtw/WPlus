@@ -1,7 +1,7 @@
 //from https://wordpress.stackexchange.com/questions/166077/keyup-events-in-tinymce-editor-not-working
+	console.log('editor loaded')
 
 jQuery(document).ready(function($) {
-
     // Create 'keyup_event' tinymce plugin
     tinymce.PluginManager.add('keyup_event', function(editor, url) {
 
@@ -30,7 +30,8 @@ jQuery(document).ready(function($) {
     // This function allows the script to run from both locations (visual and text)
     function openGraphMatch(content) {
         // Now, you can further process the data in a single function
-        console.log(content);
+        //console.log(content);
+        console.log('what')
         processOgText(content);
     }
 });
@@ -51,11 +52,12 @@ jQuery(document).ready(function($) {
 
 function processOgText(content){
 	console.log(content);
-	let getResults = getUrls(content)[0]
+	let getResults = getUrls(content);
 
 	function getUrls(value) {
 	  let regEx = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
-	  let urls = value.match(regEx)
+	  let urls = value.match(regEx);
+	  console.log(urls);
 	  var unique = new Set(urls);
 	  return unique;
 	}
@@ -67,10 +69,12 @@ function processOgText(content){
 	  if (theLink.includes("youtube.com") || theLink.includes("twitter.com") || theLink.includes("vimeo.com") ){
 	  	return;
 	  }
-	  let url = 'https://bionicteaching.com/tools/open-graph-api/?url=' + link
+	  let url = 'https://bionicteaching.com/tools/open-graph-api/?url=' + link;
+	  console.log(url)
 
 	  fetch(url)
 	    .then(function(response) {
+	    	console.log(response.json())
 	      return response.json();
 	    })
 	    .then(function(myJson) {
@@ -82,22 +86,23 @@ function processOgText(content){
 
 	  function makePreviews(destination, data, theLink){
 	    //let destination = document.getElementById('furl-list');
-	
+	    let newData = data.values;
+	    console.log(newData)
 	    let theName = '';
-	    if (data.hasOwnProperty('title') && data.title != null){
-	       theName = data.title;
+	    if (newData.hasOwnProperty('title') && newData.title != null){
+	       theName = newData.title;
 	    }
 	    
 	    let description = ''
-	    if (data.hasOwnProperty('description') && data.description != null){
-	        description = data.description;
+	    if (newData.hasOwnProperty('description') && newData.description != null){
+	        description = newData.description;
 	        }
 	    
 	    let img = 'https://via.placeholder.com/150';
-	    if (data.hasOwnProperty('images') && data['images'].length != 0 && data['images'] != null){
-	      img = data.images[0].url;
+	    if (newData.hasOwnProperty('images') && newData['images'].length != 0 && newData['images'] != null){
+	      img = newData.images[0].url;
 	    } 
-	    if (data.siteName === null && data.title === null && data.description === null){
+	    if (newData.siteName === null && newData.title === null && newData.description === null){
 	    	return;
 	    }
 	    let text = '<div class="furl-content"><img class="furl-img" src="'+img+'"><h2 class="furl-name"><a href="'+theLink+'">' + theName + '</a></h2>';

@@ -15,24 +15,24 @@ jQuery('#plus-post').on('shown.bs.modal', function () {
 jQuery('#plus-post').on('hide.bs.modal', function () {
     tinyMCE.get('mypluspost').setContent('Write your post here . . . ')//cleans out editor if canceled
     jQuery('.writing-circle').animate({
-	    opacity: 1,
-	    height: 60,
-	    width: 60,
-	  }, 500, function() {
-	    // Animation complete.
-	  });   
+      opacity: 1,
+      height: 60,
+      width: 60,
+    }, 500, function() {
+      // Animation complete.
+    });   
 }) 
 
  
 //open editor via red button
 jQuery( "#red-writing-button, #write" ).click(function() {
  jQuery('.writing-circle').animate({
-	    opacity: 0,
-	    height: 0,
-	    width: 0,
-	  }, 400, function() {
-	    // Animation complete.
-	  });  
+      opacity: 0,
+      height: 0,
+      width: 0,
+    }, 400, function() {
+      // Animation complete.
+    });  
 });
 
 /*
@@ -43,53 +43,71 @@ SHOW EXISTING COMMENTS LAND
 
 
 jQuery('.plus').isotope({
+  layoutMode: 'masonry',
   itemSelector: '.card-holder',
   percentPosition: true,
-  layoutMode: 'masonry',
   gutter: 10,
+  // getSortData: {
+  //           category: '[data-order] parseInt'
+  //       },
+  //       sortBy : 'category',
+  //       sortAscending: true
 });
 
 
+// var $grid = $('.grid').isotope({
+//   getSortData: {
+//     name: '.name', // text from querySelector
+//     category: '[data-category]', // value of attribute
+//     weight: function( itemElem ) { // function
+//       var weight = $( itemElem ).find('.weight').text();
+//       return parseFloat( weight.replace( /[\(\)]/g, '') );
+//     }
+//   }
+// });
+
+
+
 jQuery( document ).ready(function() {
-	console.log('ready');
-		activate_see_comments_buttons();
-		showCommentSubmit();
-	})
+  console.log('ready');
+    activate_see_comments_buttons();
+    showCommentSubmit();
+  })
 
 function activate_see_comments_buttons(){
-	let buttons = document.querySelectorAll('.see-comments');
-	buttons.forEach((button) => {
-	  button.addEventListener('click', () => {
-	    let postId = button.dataset.postid;
-	    build_comments_api(postId);
-	  });
-	});
+  let buttons = document.querySelectorAll('.see-comments');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      let postId = button.dataset.postid;
+      build_comments_api(postId);
+    });
+  });
 }
 
 function showCommentSubmit(){
-	let commentBoxes = document.querySelectorAll('textarea');
-	commentBoxes.forEach((box) => {
-	  box.addEventListener('click', () => {
-	  	buttonHolderID = 'submit-'+box.id.substring(8, box.id.length)
-	    document.getElementById(buttonHolderID).parentNode.style.height = '60px';	   	
-	  });
-	});
+  let commentBoxes = document.querySelectorAll('textarea');
+  commentBoxes.forEach((box) => {
+    box.addEventListener('click', () => {
+      buttonHolderID = 'submit-'+box.id.substring(8, box.id.length)
+      document.getElementById(buttonHolderID).parentNode.style.height = '60px';     
+    });
+  });
 }
 
 
 function build_comments_api(id){
-	//wp-json/wp/v2/comments?post=5198	
-	let url = ajax_var.siteurl + '/wp-json/wp/v2/comments?post=' + id;
+  //wp-json/wp/v2/comments?post=5198  
+  let url = ajax_var.siteurl + '/wp-json/wp/v2/comments?post=' + id;
 
-	jQuery('#show-'+id).animate({
-			    opacity: 0,
-			    height: 0
-			  }, 300, function() {
-			    // Animation complete.
-			    jQuery('#show-'+id).remove();
-			  });   
+  jQuery('#show-'+id).animate({
+          opacity: 0,
+          height: 0
+        }, 300, function() {
+          // Animation complete.
+          jQuery('#show-'+id).remove();
+        });   
 
-	  jQuery.get( url, function( data ) {
+    jQuery.get( url, function( data ) {
          jQuery( '#comment-home-'+id )
             data.forEach(function(comment){
             let commentBody = comment.content.rendered;
@@ -103,7 +121,7 @@ function build_comments_api(id){
             jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div><div class="comment-date">'+commentDate+'</div>'+comment.content.rendered+'</div>').show('normal');
           })
         }, "json" );
-	
+  
 }
 
 
@@ -197,7 +215,7 @@ jQuery(document).ready(function() {
               data: "action=unstick_post&nonce="+ajax_var.nonce+"&unstick_post=&post_id="+post_id,
               success: function(response) {
                document.getElementById('pin-'+post_id).classList = 'hidden'
-               console.log(post_id)
+               //console.log(post_id)
            }
         })   
       }
@@ -208,13 +226,13 @@ jQuery(document).ready(function() {
 
 //editor block buttons
 jQuery(document).ready(function() {
-	let editorButtons = document.querySelectorAll('.editor-button')
-	editorButtons.forEach((button) => {
-	  button.addEventListener('click', () => {
-	    let post = button.getAttribute('data-post')
-	    jQuery('#edit-block-'+post).toggleClass( "show-me" )
-	  });
-	});
+  let editorButtons = document.querySelectorAll('.editor-button')
+  editorButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      let post = button.getAttribute('data-post')
+      jQuery('#edit-block-'+post).toggleClass( "show-me" )
+    });
+  });
 })
 
 
@@ -319,57 +337,57 @@ function getResourceRestrictions(){
 
 //remove double images when featured img matches first image in post body
 if (document.querySelectorAll('.wp-post-image')>0){
-	let featured = document.querySelectorAll('.wp-post-image')[0]
-	let content = document.querySelectorAll('.entry-content')[0]
-	let firstImg = content.querySelectorAll('img')[0]
+  let featured = document.querySelectorAll('.wp-post-image')[0]
+  let content = document.querySelectorAll('.entry-content')[0]
+  let firstImg = content.querySelectorAll('img')[0]
 
-	if (featured.src === firstImg.src){
-	  //firstImg.classList.add('hidden') //for 
-	  firstImg.remove()
-	}
+  if (featured.src === firstImg.src){
+    //firstImg.classList.add('hidden') //for 
+    firstImg.remove()
+  }
 
 }
 
 
 //remove double for plus images
 if(document.querySelectorAll('.card')){
-	let cards = document.querySelectorAll('.card')
-	cards.forEach(function(card){
+  let cards = document.querySelectorAll('.card')
+  cards.forEach(function(card){
     if (card.querySelectorAll('.plus-photo')[0]){
-	   	let cardFeatured = card.querySelectorAll('.plus-photo')[0]
-      console.log(cardFeatured.srcset.split(','))
+      let cardFeatured = card.querySelectorAll('.plus-photo')[0]
+      //console.log(cardFeatured.srcset.split(','))
       if(card.querySelectorAll('.card-text')[0]){
         let cardContent = card.querySelectorAll('.card-text')[0]
         if(cardContent.querySelectorAll('img')[0]){
           let cardFirstImg = cardContent.querySelectorAll('img')[0]
-            console.log(cardFirstImg.srcset.split(','))
+            //console.log(cardFirstImg.srcset.split(','))
             if (cardFeatured.srcset.split(',')[3] === cardFirstImg.srcset.split(',')[3]){
               cardFirstImg.remove()
             }
         }
       }
     }        
-	})
+  })
 
 }
 
 //do search institute buttons
 
 if (document.querySelectorAll('#institute-search')) {
-	let buttons = document.querySelectorAll('.searcher')
-	buttons.forEach((button) => {
-	  button.addEventListener('click', () => {	  	 
-	    if (button.id === 'all' || jQuery('#'+button.id).hasClass('active') === true){
-	    	jQuery('.author-holder a').removeClass('hide');
-	    	jQuery('#'+button.id).toggleClass('active'); 
-	    } else {
-	    	jQuery('.searcher').not('#'+button.id).removeClass('active');
-	  	    jQuery('#'+button.id).toggleClass('active'); 
-	        jQuery('.author-holder a').removeClass('hide');
-	    	jQuery('.author-holder a').not('.'+button.id).toggleClass('hide');
-	    }
-	  });
-	});
+  let buttons = document.querySelectorAll('.searcher')
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {       
+      if (button.id === 'all' || jQuery('#'+button.id).hasClass('active') === true){
+        jQuery('.author-holder a').removeClass('hide');
+        jQuery('#'+button.id).toggleClass('active'); 
+      } else {
+        jQuery('.searcher').not('#'+button.id).removeClass('active');
+          jQuery('#'+button.id).toggleClass('active'); 
+          jQuery('.author-holder a').removeClass('hide');
+        jQuery('.author-holder a').not('.'+button.id).toggleClass('hide');
+      }
+    });
+  });
 }
 
 //do search author buttons

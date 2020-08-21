@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$author_id = get_the_author_meta('ID');
 			$author_img = get_avatar_url($author_id, array('width'=>'36','height'=>'36'));?>
 
-			<div class="card">
+			<div class="card" data-order="<?php echo get_the_time($post_id);?>">
 			
 			<div class="plus-author">
 				<img class="plus-author-photo" src="<?php echo $author_img ;?>" alt="author profile image.">

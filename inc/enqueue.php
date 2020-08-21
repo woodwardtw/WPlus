@@ -26,6 +26,7 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		$js_version = $theme_version . '.' . filemtime( get_template_directory() . '/js/theme.min.js' );
 		wp_enqueue_script( 'understrap-scripts', get_template_directory_uri() . '/js/theme.min.js', array(), $js_version, true );
 		wp_enqueue_script( 'isotope-masonry', get_template_directory_uri() . '/js/isotope.js', array(), $js_version, true );
+	
 
 		wp_enqueue_script( 'plus-script', get_template_directory_uri() . '/js/plus-editor.js', array(), '1.0', true );
 		wp_localize_script('plus-script', 'ajax_var', array(
