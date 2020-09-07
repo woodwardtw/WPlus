@@ -120,7 +120,9 @@ function build_comments_api(id){
             }
             jQuery('#comment-home-'+id).append('<div class="comment-single"><img class="comment-author-img" src="'+author_img+'"><div class="comment-author">'+commentAuthor+'</div><div class="comment-date">'+commentDate+'</div>'+comment.content.rendered+'</div>').show('normal');
           })
-        }, "json" );
+        }, "json" ).done(function() {
+          rebuildIsotope();
+  })
   
 }
 
@@ -409,3 +411,19 @@ if (document.querySelectorAll('#institute-search')) {
 //     });
 //   });
 // }
+
+
+function rebuildIsotope(){
+  console.log('rebuilding . . . ')
+  jQuery('.plus').isotope({
+  layoutMode: 'masonry',
+  itemSelector: '.card-holder',
+  percentPosition: true,
+  gutter: 10,
+  // getSortData: {
+  //           category: '[data-order] parseInt'
+  //       },
+  //       sortBy : 'category',
+  //       sortAscending: true
+});
+}
