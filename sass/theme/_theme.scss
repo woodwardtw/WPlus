@@ -128,6 +128,11 @@ h1, h2, h3 {
 	padding: 0;
 }
 
+#sort-btn {
+	margin: 0 0 20px 0;
+	display: block;
+}
+
 #main-menu {
 	margin-right: 80px;
 }
@@ -269,6 +274,8 @@ p.comment-subscription-form {
 	font-size: .8em;
 	color: rgba(0,0,0,.6);
 	margin-top: 15px;
+	display: block;
+    width: 100%;
 }
 
 .comment-count {
@@ -649,7 +656,7 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 
 /*group sorter*/
 
-.btn-onl {
+.btn-onl, .btn-cat {
 	border: 1px solid #424242;
 	border-radius: 0;
 }

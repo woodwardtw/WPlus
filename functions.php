@@ -257,6 +257,8 @@ function display_comments_shortcode() {
 		'title_comment' => '',
 		'id_submit' => 'submit-' . $post->ID,
 		'class_submit' => 'plus-comment-submit',
+		'comment_field' => '<textarea id="comment-' . $post->ID . '" class="plus-comment-box" name="comment" cols="45" rows="1" aria-required="true" aria-label="Comment" placeholder="Add a comment..."></textarea>',
+
 	)
  );
  $res = ob_get_contents();

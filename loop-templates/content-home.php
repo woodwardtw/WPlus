@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!--widget-->
 		<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Home Top") ) : ?>
 		<?php endif;?>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#sorter" aria-expanded="false" aria-controls="collapseExample">
+		<button class="btn btn-primary" id="sort-btn" type="button" data-toggle="collapse" data-target="#sorter" aria-expanded="false" aria-controls="collapseExample">
 		    Sort by Category
 		</button>
 		<div class="collapse" id="sorter">
@@ -62,11 +62,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 				  <?php plus_post() ;?>
 				  <?php wp_nonce_field( 'process_form', 'wplus_nonce' ); ?>
 				  <div class="form-group">
-				  <button class="btn btn-cat" type="button" data-toggle="collapse" data-target="#postCategories" aria-expanded="false" aria-controls="collapseExample">
+				  <button class="btn btn-cat btn-primary" type="button" data-toggle="collapse" data-target="#postCategories" aria-expanded="false" aria-controls="collapseExample">
 				    Categories
 				  </button>
 				    <select multiple class="form-control collapse" id="postCategories" name="postCategories[]">
-				      <option value="helpline-support">Helpline / Support</option>
+				      <option value="helpline-support">Helpline / Support</option>				   
 				      <option value="getting-started">Getting Started</option>
 				      <option value="connecting-week">Connecting Week</option>
 				      <option value="topic-1-online-participation-digital-literacies">Topic 1: online participation digital literacies</option>

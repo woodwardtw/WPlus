@@ -47,24 +47,9 @@ jQuery('.plus').isotope({
   itemSelector: '.card-holder',
   percentPosition: true,
   gutter: 10,
-  // getSortData: {
-  //           category: '[data-order] parseInt'
-  //       },
-  //       sortBy : 'category',
-  //       sortAscending: true
 });
 
 
-// var $grid = $('.grid').isotope({
-//   getSortData: {
-//     name: '.name', // text from querySelector
-//     category: '[data-category]', // value of attribute
-//     weight: function( itemElem ) { // function
-//       var weight = $( itemElem ).find('.weight').text();
-//       return parseFloat( weight.replace( /[\(\)]/g, '') );
-//     }
-//   }
-// });
 
 
 
@@ -72,6 +57,7 @@ jQuery( document ).ready(function() {
   console.log('ready');
     activate_see_comments_buttons();
     showCommentSubmit();
+    commentBoxRebuild();
   })
 
 function activate_see_comments_buttons(){
@@ -413,6 +399,13 @@ if (document.querySelectorAll('#institute-search')) {
 // }
 
 
+const comments = document.querySelector('input[type="password"]');
+
+password.addEventListener('focus', (event) => {
+  event.target.style.background = 'pink';    
+});
+
+
 function rebuildIsotope(){
   console.log('rebuilding . . . ')
   jQuery('.plus').isotope({
@@ -420,10 +413,14 @@ function rebuildIsotope(){
   itemSelector: '.card-holder',
   percentPosition: true,
   gutter: 10,
-  // getSortData: {
-  //           category: '[data-order] parseInt'
-  //       },
-  //       sortBy : 'category',
-  //       sortAscending: true
+});
+}
+
+function commentBoxRebuild(){
+  const commentBoxes = document.querySelectorAll('.plus-comment-box');
+  commentBoxes.forEach((box) => {
+  box.addEventListener('click', () => {
+    rebuildIsotope();
+  });
 });
 }
