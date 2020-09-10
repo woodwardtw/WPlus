@@ -427,6 +427,35 @@ p.comment-subscription-form {
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.2);
     border: none;
 }
+
+.form-control {
+	background-color: #fff;
+	transition: all .9s;
+}
+
+.form-control.attention {
+	-webkit-animation: borderBlink 1s step-end infinite;    
+    animation: borderBlink 5s step-end infinite;   
+    animation-timing-function: ease-in-out; 
+}
+
+@-webkit-keyframes borderBlink {    
+    from, to {    
+        background-color: transparent    
+    }    
+    100% {    
+        background-color: #47e1f4    
+    }    
+}    
+@keyframes borderBlink {    
+    from, to {    
+        background-color: transparent    
+    }    
+    100% {    
+        background-color: #47e1f4    
+    }    
+}    
+
 //single post 
 #single-wrapper .site-main, #page-wrapper .site-main {
 	max-width: 90%;
@@ -656,9 +685,8 @@ i.mce-i-aligncenter, i.mce-i-alignjustify, i.mce-i-alignleft, i.mce-i-alignright
 
 /*group sorter*/
 
-.btn-onl, .btn-cat {
-	border: 1px solid #424242;
-	border-radius: 0;
+.btn-onl {
+	margin: 0 0 10px 0;	
 }
 
 button.searcher {

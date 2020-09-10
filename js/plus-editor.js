@@ -54,10 +54,10 @@ jQuery('.plus').isotope({
 
 
 jQuery( document ).ready(function() {
-  console.log('ready');
     activate_see_comments_buttons();
     showCommentSubmit();
     commentBoxRebuild();
+    formSubmitCatCheck();
   })
 
 function activate_see_comments_buttons(){
@@ -399,11 +399,11 @@ if (document.querySelectorAll('#institute-search')) {
 // }
 
 
-const comments = document.querySelector('input[type="password"]');
+// const comments = document.querySelector('input[type="password"]');
 
-password.addEventListener('focus', (event) => {
-  event.target.style.background = 'pink';    
-});
+// password.addEventListener('focus', (event) => {
+//   event.target.style.background = 'pink';    
+// });
 
 
 function rebuildIsotope(){
@@ -424,3 +424,22 @@ function commentBoxRebuild(){
   });
 });
 }
+
+function formSubmitCatCheck(){
+  console.log('check loaded')
+  const subButton = document.querySelector('#post-plus-button');
+  subButton.onclick = function catExist() {
+
+       const cat = document.getElementById('postCategories').value;
+      if (cat === ""){
+        alert('Please enter a category.');
+        document.querySelector('.btn-cat').click();
+        document.querySelector('#postCategories').focus;
+        document.querySelector('#postCategories').classList.add('attention')
+        return false;
+      } else {
+        console.log('cats!')
+      }
+
+    }
+  }
