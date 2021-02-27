@@ -80,7 +80,7 @@ function the_front_posts(){
 			$html .= '<div class="plus-date">' . get_the_date( 'M j, Y' ) . '<button class="fa fa-ellipsis-v editor-button" data-post="'.$post_id.'"></button></div><div class="edit-block" id="edit-block-'.$post_id.'">';
 			$html .=  edit_it($post_id, $author_id) . post_go_away($post_id) .'</div></div>';
 			if(get_the_title()){
-				$html .= '<a href="' . get_post_permalink() . '"><h2>' . get_the_title() . '</h2></a>';
+				$html .= '<a href="' . get_permalink($post_id) . '"><h2>' . get_the_title() . '</h2></a>';
 			}
 			$html .= get_the_post_thumbnail($post_id, 'medium', array( 'class' => 'plus-photo img-' . $post_id ) );
 			$html .= '<div class="card-text">' . apply_filters('the_content', get_the_content()) . '</div>';
@@ -379,13 +379,26 @@ function plus_post_creation($title, $body, $my_cats, $sticky) {
     $my_post = array(
 	  'post_title'    => wp_strip_all_tags( $title, true ), 
 	  'post_content'  => $body, 
-	  'post_status'   => 'publish',
+	  'post_status'   => 'draft',
 	  'post_author'   => get_current_user_id(),
-	  'post_category' => $my_cats
+	  'post_category' => $my_cats,
+	  'post_name' => sanitize_title($title), //permalink started failing with notification change adjusting
 	);
 	 
 	// Insert the post into the database
 	$post_id = wp_insert_post( $my_post );
+	//notification email adjustment*******************************
+	$post_to_transition = get_post( $post_id );
+	global $wpdb;
+
+	// Change the post status
+	$wpdb->update($wpdb->posts, array('post_status'=>'publish'), array('ID' => $post_to_transition->ID));
+	clean_post_cache($post_to_transition->ID);
+
+	// Triggers the notification in BNFW
+	wp_transition_post_status( "publish", "draft", $post_to_transition );
+	//***************************end notification email adjust
+
 	//make sticky if sticky on
 	if ($sticky === 'on'){
 		stick_post($post_id);
@@ -771,3 +784,10 @@ function wplus_menu_shortcode($atts){
 add_shortcode( 'menu-fetch', 'wplus_menu_shortcode' );
 
 
+//notification plugin
+
+// function bnfw_insert_post_hook_for_theme( $themes ) {
+// $themes[] = 'wplus';
+// return $themes;
+// }
+// add_filter( 'bnfw_insert_post_themes', 'bnfw_insert_post_hook_for_theme' );

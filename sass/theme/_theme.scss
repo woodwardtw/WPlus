@@ -5,6 +5,10 @@ body {
 	background-color: #f1f1f1;
 }
 
+#gplus {
+	height: auto !important;
+}
+
 h1, h2, h3 {
 	color: rgba(0,0,0,0.87);
     font-size: 2em;
@@ -202,7 +206,11 @@ h1, h2, h3 {
 
 .card p img {
 	padding: 10px 0;
-	margin: 0 -20px 0 -20px;	
+	margin: 0 -20px 0 -20px;
+}
+
+img.aligncenter {
+	display: block;
 }
 
 /*hide jetpack subscribe*/
@@ -731,6 +739,14 @@ button.searcher:hover{
 	text-align: center;
 	margin: 15px 0;
 }
+
+/*archive page/cat pages*/
+.archive .pagination {
+	position: fixed;
+    bottom: 0;
+    z-index: 100;
+}
+
 
 /*LIKE*/
 
